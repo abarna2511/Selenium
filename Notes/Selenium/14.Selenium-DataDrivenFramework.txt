@@ -1,0 +1,101 @@
+DATA DRIVEN FRAMEWORK :
+----------------------
+As the name itself says Data Driven - A framework which is driven by data
+It can be used where one test case have to execute with different set of data
+
+
+There are 2 ways to store data and use 
+
+1. Storing data using Object class in the test case class ===> Not Best ways
+2. To Store in Excel and to use ===> Best ways
+
+
+1. Using Object Class :
+-----------------------
+package datadriven;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class FreeCrmLogin {
+	WebDriver driver;
+	@Test(dataProvider = "FreeCrmData")
+	public void login(String username, String password) throws InterruptedException {
+		System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+		driver =new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.get("https://classic.crmpro.com/login.cfm");
+		driver.findElement(By.xpath("//input[@placeholder='Login']")).sendKeys(username);
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(password);
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+		Thread.sleep(3000);
+		String title = driver.getTitle();
+		Assert.assertEquals(title, "CRMPRO", "Tite Does not match");
+		driver.quit();
+	}
+
+	@DataProvider(name = "FreeCrmData")
+	public Object[][] passData(){
+		Object[][] data = new Object[3][2];
+		data[0][0] = "vignesh1810";
+		data[0][1] = "vignesh1810";
+		data[1][0] = "admin";
+		data[1][1] = "admin";
+		data[2][0] = "user";
+		data[2][1] = "pwd";
+		return data;
+	}
+}
+
+
+2. Using Excel:
+------------------
+
+package datadriven;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import library.ExcelDataConfig;
+
+public class FreeCrmLoginParametrized {
+	WebDriver driver;
+	@Test(dataProvider = "FreeCrmData")
+	public void login(String username, String password) throws InterruptedException {
+		System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+		driver =new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.get("https://classic.crmpro.com/login.cfm");
+		driver.findElement(By.xpath("//input[@placeholder='Login']")).sendKeys(username);
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(password);
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+		Thread.sleep(3000);
+		String title = driver.getTitle();
+		Assert.assertEquals(title, "CRMPRO", "Tite Does not match");
+		driver.quit();
+	}
+
+	@DataProvider(name = "FreeCrmData")
+	public Object[][] passData(){
+		ExcelDataConfig config=  new ExcelDataConfig("C:\\Users\\Vignesh\\WorkSpace\\Selenium-Own-Practice\\ExcelData\\FreeCrmTestData.xlsx");
+		int rows = config.getRowCount(0);
+		
+		
+		Object[][] data = new Object[rows][2];
+		for (int i = 0; i <rows; i++) {
+			data[i][0] = config.getData(0, i, 0);
+			data[i][1] = config.getData(0, i, 1);
+		}
+		return data;
+	}
+}

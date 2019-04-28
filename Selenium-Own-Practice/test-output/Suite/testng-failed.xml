@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test(failed)">
+    <parameter name="password" value="testpassword"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="emailId" value="test123@gmail.com"/>
+    <parameter name="url" value="http://facebook.com"/>
+    <classes>
+      <class name="testngassertion.HardAssertion">
+        <methods>
+          <include name="test1"/>
+        </methods>
+      </class> <!-- testngassertion.HardAssertion -->
+      <class name="testngassertion.SoftAssertion">
+        <methods>
+          <include name="test1"/>
+        </methods>
+      </class> <!-- testngassertion.SoftAssertion -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

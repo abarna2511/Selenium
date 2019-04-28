@@ -1,0 +1,50 @@
+Non-Access Modifiers:
+---------------------
+
+1. static
+2. final
+3. abstract
+4. strictfp
+5. native
+6. synchronized
+7. transient 
+8. volatile
+
+
+1. static:
+----------
+- It is used for creating variables or methods that will exist independently of any instances created for that class
+- static variables and methods can be called with class name. NO object reference is needed
+- static variables are known as class variables i.e only one copy of it exist regardless of number of instances of class
+- static variables can be called by both static and non-static methods(BUT INSTANCE VARIABLES CANNOT BE CALLED BY STATIC METHODS)
+- static variables values once intialized cannot be changed. However static members can access static data and change the value
+- static methods do not use instance variables, instead take the data from the parameter and compute them
+- static method does not allow non-static variables or non-static methods
+- static method does not allow THIS and SUPER keywords
+- static method are executed before main method at the time of class loading
+
+
+2. final:
+-----------
+- Value once assigned to final variables cannot be changed
+- Initially if the final variable is declared and not initialized, then it can be initialized only by the constructors.
+- Constructors cannot be defined as final as they cannot be inherited
+- Initially if static final variable is declared and not initialized, then it can be initialized only by the static block.
+- Final class cannot be inherited
+- A subclass can call/inherit the final method of parent class but cannot override it
+
+
+3. abstract:
+------------
+- A class with abstract keyword is an abstract class
+- An abstract class can never be instantiated, but they can be sub-classed
+- If a class contains abstract methods then the class should be declared abstract
+- An abstract class can contain both abstract and non-abstract methods
+- Any class extends an abstract class must implement all the abstract methods of the super class unless the sub-class is also an abstract class
+- Abstract method is a method declared without any implementation. Its body is implemented in the sub-class
+- Both Abstract class and Abstract method can never be FINAL
+- Abstract method ends with Semicolon --> Eg : public abstract m1();
+
+
+
+************* Please refer dig for access and non access modifier list across classs, method and variables*******************

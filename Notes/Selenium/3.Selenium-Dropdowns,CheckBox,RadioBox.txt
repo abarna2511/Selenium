@@ -1,0 +1,65 @@
+STATIC DROPDOWN: It is the default/old dropdown used in Website. To identify its Static dropdown, inpsect the dropdown. It should be in select tag.
+----------------
+
+Select class need to be used for dropdown. It has 3 methods. selectByIndex, selectByValue and selectByVisibleText
+
+Eg - To automate Date, Month and Year in Facebook page
+
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver =new ChromeDriver();
+driver.get("https://www.facebook.com/");
+Select day = new Select(driver.findElement(By.id("day")));
+Select month = new Select(driver.findElement(By.id("month")));
+Select year = new Select(driver.findElement(By.id("year")));
+
+// 3 methods are available --- selectByIndex, selectByValue and selectByVisibleText
+day.selectByVisibleText("18");
+month.selectByValue("10");
+year.selectByIndex(2);
+
+		
+DYNAMIC DropDowns:
+-----------------
+Eg:
+
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver =new ChromeDriver();
+driver.get("https://www.spicejet.com/");
+driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXTaction")).click();
+driver.findElement(By.xpath("//a[@value='HYD']")).click();
+driver.findElement(By.xpath("(//a[@value='MAA'])[2]")).click();
+
+
+CHECKBOXES:
+-------------
+Eg: 
+
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver =new ChromeDriver();
+driver.get("https://www.spicejet.com/");
+driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).click();
+System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).isSelected());
+
+driver.findElement(By.id("ctl00_mainContent_chk_SeniorCitizenDiscount")).click();
+System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_SeniorCitizenDiscount")).isSelected());
+
+driver.findElement(By.id("ctl00_mainContent_chk_IndArm")).click();
+System.out.println(driver.findElement(By.id("ctl00_mainContent_chk_IndArm")).isSelected());
+
+
+RADIO BUTTONS:
+--------------
+Eg:
+
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver =new ChromeDriver();
+driver.get("https://www.spicejet.com/");
+
+System.out.println(driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_0")).isSelected());
+
+driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).click();
+System.out.println(driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).isSelected());
+
+driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_2")).click();
+driver.findElement(By.id("MultiCityModelAlert")).click();
+System.out.println(driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_2")).isSelected());

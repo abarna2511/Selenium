@@ -1,0 +1,100 @@
+ARRAYS : 
+1. Arrays is used to represent group of elements as a single entity, where the elements need to be homogeneous and fixed numbers
+2. Array is always index based where the index starts from "0"
+
+
+Syntax :
+
+dataType[] arrayRefVar;	====> Preferred way
+dataType arrayRefVar[];	====> Works but Not Preferred
+
+
+Array creation using New operator
+-----------------------------------
+Syntax:
+arrayRefVar = new dataType[arraySize];
+
+Before array creation, array should have been created
+
+Or can create and declare array in same step as
+
+dataType[] arrayRefVar = new dataType[arraySize];
+
+Alternate approach:
+-------------------
+Syntax:
+dataType[] arrayRefVar = {value0, value1, value2};
+
+
+Eg1 : With Both Approach
+-----
+
+public class ArrayDemo {
+	
+	public static void main(String[] args) {
+		// 1st Way
+		int[] myArray;
+		myArray = new int[3];
+		myArray[0]= 1;
+		myArray[1]= 2;
+		myArray[2]= 3;
+		
+		// 2nd way
+		int[] myArray2 = new int[3];
+		myArray2[0]= 4;
+		myArray2[1]= 5;
+		myArray2[2]= 6;
+		
+		// 3rd way
+		int[] myArray3 = {7,8,9};
+		
+		System.out.println(myArray[0]);
+		System.out.println(myArray2[1]);
+		System.out.println(myArray3[2]);
+	}
+}
+
+Print all the Array Elements:
+--------------------------------
+Use for loop
+
+In Above Example, As to print all the elements in myArray
+
+for (int i = 0; i < myArray.length; i++) {
+			System.out.println("myArray elements of index "+i+" is "+myArray[i]);
+		}
+		
+Eg 2 : Program to find sum of array elements and max of array elements
+------
+
+public static void main(String[] args) {
+		int[] myArray = {7,8,9};
+		
+		for (int i = 0; i < myArray.length; i++) {
+			System.out.println("myArray elements of index "+i+" is "+myArray[i]);
+		}
+		
+		int sum = 0;
+		for (int i = 0; i < myArray.length; i++) {
+			sum += myArray[i];
+		}
+		System.out.println("Sum value is "+sum);
+		
+		int max = 0;
+		
+		for (int i = 0; i < myArray.length; i++) {
+			
+			if(myArray[i]>max) {
+				max = myArray[i];
+			}	
+		}
+		System.out.println("Max value is "+max);
+	}
+}
+
+
+ARRAY METHODS:
+---------------
+
+
+

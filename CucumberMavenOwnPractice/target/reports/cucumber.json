@@ -1,0 +1,204 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Create a contact",
+        "description": "",
+        "id": "demo-for-cucumber-tags-in-freecrm;create-a-contact",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 121867136,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "This is a contact testcase",
+            "match": {
+              "location": "StepDefTags.this_is_a_contact_testcase()"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "line": 3,
+            "name": "@SmokeTest"
+          }
+        ]
+      },
+      {
+        "line": 8,
+        "name": "Create a deal",
+        "description": "",
+        "id": "demo-for-cucumber-tags-in-freecrm;create-a-deal",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 170098,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "This is a deal testcase",
+            "match": {
+              "location": "StepDefTags.this_is_a_deal_testcase()"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "line": 7,
+            "name": "@RegressionTest"
+          }
+        ]
+      },
+      {
+        "line": 16,
+        "name": "Create a case",
+        "description": "",
+        "id": "demo-for-cucumber-tags-in-freecrm;create-a-case",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 198541,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "This is a case testcase",
+            "match": {
+              "location": "StepDefTags.this_is_a_case_testcase()"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "line": 15,
+            "name": "@SmokeTest"
+          },
+          {
+            "line": 15,
+            "name": "@RegressionTest"
+          },
+          {
+            "line": 15,
+            "name": "@E2ETest"
+          }
+        ]
+      },
+      {
+        "line": 20,
+        "name": "Search a contact",
+        "description": "",
+        "id": "demo-for-cucumber-tags-in-freecrm;search-a-contact",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 179199,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "This is a search contact testcase",
+            "match": {
+              "location": "StepDefTags.this_is_a_search_contact_testcase()"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "line": 19,
+            "name": "@RegressionTest"
+          },
+          {
+            "line": 19,
+            "name": "@E2ETest"
+          }
+        ]
+      },
+      {
+        "line": 24,
+        "name": "Search a deal",
+        "description": "",
+        "id": "demo-for-cucumber-tags-in-freecrm;search-a-deal",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 129706,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "This is a search deal testcase",
+            "match": {
+              "location": "StepDefTags.this_is_a_search_deal_testcase()"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "line": 23,
+            "name": "@SmokeTest"
+          },
+          {
+            "line": 23,
+            "name": "@E2ETest"
+          }
+        ]
+      },
+      {
+        "line": 32,
+        "name": "Search a case",
+        "description": "",
+        "id": "demo-for-cucumber-tags-in-freecrm;search-a-case",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 169528,
+              "status": "passed"
+            },
+            "line": 33,
+            "name": "This is a search case testcase",
+            "match": {
+              "location": "StepDefTags.this_is_a_search_case_testcase()"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "line": 31,
+            "name": "@SmokeTest"
+          },
+          {
+            "line": 31,
+            "name": "@RegressionTest"
+          },
+          {
+            "line": 31,
+            "name": "@E2ETest"
+          }
+        ]
+      }
+    ],
+    "name": "Demo for Cucumber Tags in FreeCrm",
+    "description": "",
+    "id": "demo-for-cucumber-tags-in-freecrm",
+    "keyword": "Feature",
+    "uri": "C:/Users/Vignesh/WorkSpace/CucumberMavenOwnPractice/features/TagsDemo.feature"
+  }
+]

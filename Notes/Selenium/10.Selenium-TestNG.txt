@@ -1,0 +1,524 @@
+TestNG : Unit Test Framework. It is also called as TDD framework. It means Test Driven Development Framework
+
+Purpose of TestNG is to design TC in a systematic way
+
+It is Open Source, free and available in JAR files.
+
+IT IS ONLY AVAILABLE WITH JAVA and not with other languages
+
+Advantages:
+1. Generate good HTML reports
+2. Has lot of annotations
+3. Can prioritize Test case
+4. Can design Tc execution sequence
+5. Data provider is the most important feature
+
+How to Install TestNG:
+-----------------------
+1. Launch the Eclipse IDE and click --> Help menu --> click “Install New Software”.
+2. You will see a dialog window, click “Add” button.
+3. Type name as you wish, lets take “TestNG” and type “http://beust.com/eclipse/” as location. Click OK.
+4. You come back to the previous window but this time you must see TestNG option in the available software list. Just Click TestNG and press “Next” button.
+5. It will display 3 options with TestNG. Click Next --> Click “I accept the terms of the license agreement” then click Finish.
+6. You may or may not encounter a Security warning, if in case you do just click OK.
+7. Click Next again on the succeeding dialog box until it prompts you to Restart the Eclipse.
+8. You are all done now, just Click Yes.
+9. Proceed with your workplace.
+10. After restart, verify if TestNG was indeed successfully installed. Right click on you project and see if TestNG is displayed in the opened menu.
+
+How to add TestNG properties to the project:
+---------------------------------------------
+1. Right click on the project and click on Properties
+2. Click on Java Build Path --> Click on Libraries Tab
+3. Click on the ClassPath(If available) and click on Add Library
+4. Select TestNG and click on Next and click on Finish
+5. Click on Apply and click on Apply & Close
+
+Note : There is no main method in a TestNG class
+
+Annotations :
+-------------
+1. All the annotations starts with @
+2. Each annotations should associate with a method
+
+Eg:
+
+package testng;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Basics {
+	
+	//Pre-Condition Annotations stars with @Before
+	@BeforeSuite
+	public void setUp() {
+		System.out.println("Setup System Property");
+	}
+	
+	@BeforeTest
+	public void launchBrowser() {
+		System.out.println("Launch Chrome Browser");
+	}
+	
+	@BeforeClass
+	public void login() {
+		System.out.println("Login Method");
+	}
+	
+	@BeforeMethod
+	public void enterUrl() {
+		System.out.println("Enter Url");
+	}
+	
+	//Test cases stars with @Test
+	@Test
+	public void googleTitle() {
+		System.out.println("Google Title");
+	}
+	
+	//Post-Condition Annotations stars with @Before
+	@AfterMethod
+	public void logOut() {
+		System.out.println("Log Out Method");
+	}
+	
+	@AfterClass
+	public void closeBrowser() {
+		System.out.println("Close Browser");
+	}
+	
+	@AfterTest
+	public void deleteAllCookies() {
+		System.out.println("All Cookies Deleted");
+	}
+	
+	@AfterSuite
+	public void generateReport() {
+		System.out.println("Generate Report");
+	}
+}
+
+
+1. Priority :	
+-------------
+To define execution sequence of the TC running we use priority keyword
+It should be used only with @Test annotations
+
+Eg : 
+	@Test(priority=3)
+	public void googleTitle() {
+		String title = driver.getTitle();
+		System.out.println(title);
+	}
+	
+	@Test(priority=1)
+	public void googleLogo() {
+		boolean b = driver.findElement(By.xpath("//img[@alt='Google']")).isDisplayed();
+	}
+	
+	@Test(priority=2)
+	public void mailLink() {
+		boolean b = driver.findElement(By.linkText("Gmail")).isDisplayed();
+	}
+	
+Output:
+PASSED: googleLogo
+PASSED: mailLink
+PASSED: googleTitle
+
+
+To Verify the inbuilt report:
+---------------------------------
+1. Right click on the project and click on Refresh
+2. Under test-output folder --> right click on index.html file and copy the path and open it in chrome browser
+
+
+2. Groups:
+-----------
+To run Tc as a group
+
+Eg:
+	@Test(groups="Title")
+	public void googleTitle() {
+		String title = driver.getTitle();
+		System.out.println(title);
+	}
+	
+	@Test(groups="Logo")
+	public void googleLogo() {
+		boolean b = driver.findElement(By.xpath("//img[@alt='Google']")).isDisplayed();
+	}
+	
+	@Test(groups="Link")
+	public void mailLink() {
+		boolean b = driver.findElement(By.linkText("Gmail")).isDisplayed();
+	}
+	
+	@Test(groups="Link")
+	public void imagesLink() {
+		boolean b = driver.findElement(By.linkText("Images")).isDisplayed();
+	}
+
+3. DependsOn:
+--------------
+To execute particular Tc when it has depenandancy on another Tc
+
+Eg:
+
+	@Test
+	public void login() {
+		System.out.println("Login");		
+	}
+	
+	@Test(dependsOnMethods = "login")
+	public void homePage() {
+		System.out.println("Home Page");		
+	}
+	
+	@Test(dependsOnMethods = "homePage")
+	public void Search() {
+		System.out.println("Search Page");		
+	}
+	
+Output:
+PASSED: login
+PASSED: homePage
+PASSED: Search
+
+Note : If login() is failed, then homePage() will not be executed at all. It will be skipped
+So even if the login() failed and still need to execute homePage(), then need to give alwaysRun=true under homePage()
+
+Eg:
+
+@Test(dependsOnMethods = "homePage",alwaysRun=true)
+	public void Search() {
+		System.out.println("Search Page");		
+	}
+
+
+4. Invocation Count :
+----------------------
+When need to execute a @Test for number of times
+
+Eg :
+
+@Test(invocationCount = 5)
+	public void sum() {
+		int a = 10;
+		int b = 20;
+		int c = a+b;
+		System.out.println("Sum is "+c);
+	}
+
+Output:
+Sum is 30
+Sum is 30
+Sum is 30
+Sum is 30
+Sum is 30
+PASSED: sum
+PASSED: sum
+PASSED: sum
+PASSED: sum
+PASSED: sum
+
+
+5. Expected Exceptions :
+---------------------------
+When need to handle the known exception
+
+Eg:
+
+@Test(expectedExceptions = ArrayIndexOutOfBoundsException.class)
+	public void exceptionHandle() {
+		
+		int a[] = {1,2,4};
+		System.out.println(a[4]);
+	}
+	
+	
+6. Enabled :
+--------------
+
+If need to skip any Test case from running, use enabled = false in @Test
+
+Eg:
+
+	@Test
+	public void login() {
+		System.out.println("Login");		
+	}
+	
+	@Test
+	public void homePage() {
+		System.out.println("Home Page");		
+	}
+	
+	@Test(enabled=false)
+	public void Search() {
+		System.out.println("Search Page");		
+	}
+	
+Output:
+PASSED: login
+PASSED: homePage
+
+
+ASSERTION :		It is a mechanism of validation. It compares the Expected Vs Actual values
+------------
+
+There is 2 type of Assertion - Hard and Soft Assertion
+
+Hard Assertion : If the Assertion condition fails, then it will terminate the program
+
+Eg:
+	@Test
+	public void test1() {
+		System.out.println("Test1 started");
+		int a = 10;
+		int b = 20;
+		Assert.assertEquals(a, b, "Number does not match");
+		System.out.println("Test1 Completed");
+	}
+
+	
+	@Test
+	public void test2() {
+		System.out.println("Test2 started");
+		String a = "Vignesh";
+		Assert.assertEquals(a, "Vignesh", "Name does not match");
+		System.out.println("Test2 Completed");
+	}
+
+
+Soft Assertion : If the Assertion condition fails, it will still continue the execution. But still it will mark Test case as fail. But execution will continue
+
+Eg:
+
+	@Test
+	public void test1() {
+		SoftAssert assertion = new SoftAssert();
+		System.out.println("Test1 started");
+		int a = 10;
+		int b = 20;
+		assertion.assertEquals(a, b);
+		System.out.println("Test1 Completed");
+		assertion.assertAll();
+	}
+
+	
+	@Test
+	public void test2() {
+		SoftAssert assertion = new SoftAssert();
+		System.out.println("Test2 started");
+		String a = "Vignesh";
+		assertion.assertEquals(a, "Vignesh");
+		System.out.println("Test2 Completed");
+		assertion.assertAll();
+	}
+
+testng.xml :
+--------------
+To execute multiple testcases at same time we have to use testng.xml
+
+To create testng.xml :
+----------------------
+1. Right click on the src folder in the Project
+2. Click on New ---> File ---> Give name as testng.xml
+
+==>Paste the following if need to execute specific cases in the package
+
+<suite name="Suite1">
+    <test name="TestNg All Test">
+        <classes>
+            <class name="package.class1"/>
+            <class name="package.class2"/>
+            <class name="package.class3"/>
+        </classes>
+    </test>
+</suite>
+
+==>Paste the following if need to execute whole package
+
+
+<suite name="Suite1">
+    <test name="all-tests">
+        <packages>
+            <package name="package1"/>
+        </packages>
+    </test>
+</suite>
+
+==>Paste the following if need to execute whole package
+
+<suite name="Suite2" verbose="1">
+    <test name="all-tests">
+        <packages>
+            <package name="package1"/>
+            <package name="package2"/>
+        </packages>
+    </test>
+</suite>
+
+
+PARAMETERS:
+------------
+Paremeters annotations are used to create generic values in Testng.yml file and use in code
+
+Eg:
+
+In testng.xml file
+
+<suite name="Suite1">
+    <test name="TestNg All Test">
+    <parameter name="url" value="http://facebook.com"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="emailId" value="test123@gmail.com"/>
+    <parameter name="password" value="testpassword"/>
+        <classes>
+            <class name="testng.ParemetersDemo"/>
+        </classes>
+    </test>
+</suite>
+
+
+
+In class
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class ParemetersDemo {
+	
+	WebDriver driver ;
+	
+	@Test
+	@Parameters({"url","browser","emailId","password"})
+	public void setup(String url, String browser, String emailId, String password){
+		if(browser.equals("chrome")) {
+			System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+			driver =new ChromeDriver();
+		}
+		else if(browser.equals("firefox")) {
+			System.setProperty(	"webdriver.gecko.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\geckodriver-v0.24.0-win64\\geckodriver.exe");
+			driver =new FirefoxDriver();
+		}
+		driver.manage().window().maximize();
+		driver.get(url);
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(emailId);
+		driver.findElement(By.xpath("//input[@id='pass']")).sendKeys(password);
+		driver.quit();
+	}
+}
+
+
+LISTENERS:
+--------------
+Listeners are very important feature in TestNG which allows to customize logs or reports.
+As the name says, it listens to certain events and behave accordingly
+
+Types of Listeners:
+------------------
+
+IAnnotationTransformer
+IAnnotationTransformer2
+IHookable
+IInvokedMethodListener
+IMethodInterceptor
+IReporter
+ISuiteListener
+ITestListener
+
+Diff ways to Implement:
+-----------------------
+1. We can either extend TestListenerAdapter class
+2. We can implement interface ITestListener
+
+Eg :
+
+1. Create a new class as TestNgListeners and implement all the unimplemented methods from ITestListener
+
+package testng;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+public class TestNgListeners implements ITestListener {
+
+	@Override
+	public void onTestStart(ITestResult result) {
+		System.out.println("TestCases started and details are "+result.getName());
+	}
+
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		System.out.println("TestCases success and details are "+result.getName());
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		System.out.println("TestCases failed and details are "+result.getName());
+	}
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		System.out.println("TestCases skipped and details are "+result.getName());
+	}
+
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		
+	}
+
+	@Override
+	public void onStart(ITestContext context) {
+		
+	}
+
+	@Override
+	public void onFinish(ITestContext context) {
+		
+	}
+
+}
+
+2. Refering the TestNgListeners in the xml level as need to reflect it to all classes
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<listeners>
+    <listener class-name="testng.TestNgListeners" />
+  </listeners>
+  <test  name="Test">
+  <parameter name="url" value="http://facebook.com"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="emailId" value="test123@gmail.com"/>
+    <parameter name="password" value="testpassword"/>
+    <classes>
+      <class name="testng.GoogleTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
+
+
+
+
+
+

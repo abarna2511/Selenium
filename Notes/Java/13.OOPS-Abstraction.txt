@@ -1,0 +1,87 @@
+ABSTRACTION : The process of hiding set of services and hiding implementation in child class
+
+Abstract class : 
+-------------------
+1. If a class contains at-least one Abstract method then it is called Abstract class
+2. To represent a class is abstract need to use "Abstract" modifier
+3. It is not possible to create object for an Abstract class
+4. Even if a class does not contain any abstract method , still it can be called as Abstract class when "Abstract" modifier is declared for that class
+
+Abstract method :
+-------------------
+1. It contains only method declaration and not implementation.
+2. Abstract method always end with semicolon(;)
+3. To represent a method is abstract method need to use "Abstract" modifier
+5. Have to place the abstract keyword before the method name
+
+
+Eg 1 : Inside abstract class declaring main method is possible
+
+abstract class Test{
+public static void main(Static[] args)
+{
+System.out.println("main method");
+}
+}
+
+Eg 2 : Inside abstract class declaring constructor is possible
+
+abstract class Test
+{
+Test()
+{
+System.out.println("abstract class constructor");
+}
+void m1();
+}
+
+class Test1 extends Test
+{
+Test1()
+{
+super();
+System.out.println("normal class constructor");
+}
+void m1()
+{
+System.out.println("m1 method");
+}
+public static void main(Static[] args)
+{
+Test t=new Test();
+t.m1(); // Output is abstract class constructor---normal class constructor---m1 method
+}
+}
+
+Eg 3 : Inside abstract class declaring instance and static block is possible
+
+abstract class Test
+{
+Test()
+{
+System.out.println("abstract class constructor");
+}
+{
+System.out.println("instance block");
+}
+static{
+System.out.println("static block");
+}
+}
+
+class Test1 extends Test
+{
+Test1()
+{
+super();
+System.out.println("normal class constructor");
+}
+public static void main(Static[] args)
+{
+new Test(); // Output is static block--instance block--abstract class constructor---normal class constructor
+}
+}
+
+
+************************** See Dig of Difference Abstract class and Interface *************************
+

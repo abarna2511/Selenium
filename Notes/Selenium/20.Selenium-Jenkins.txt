@@ -1,0 +1,48 @@
+JENKINS
+---------
+
+DOWNLOAD JENKINS:
+-----------------
+1. Go to https://jenkins.io/download/
+2. Under Long-term Support (LTS) --> Generic Java Package(.war)
+
+INSTALL JENKINS:
+-----------------
+1. Once the war file is downloaded, open command prompt
+2. Move the folder where the war file is downloaded
+3. Type java -jar ===> Drag and drop the war file in the command prompt and hit Enter
+4. Once it completes the run --> It will display password
+5. Open chrome and in address bar enter "http://localhost:8080" and hit Enter
+6. Enter the password which displayed in the command prompt and click on continue
+
+CONFIGURE JENKINS:
+--------------------
+1. Click on "Install Suggested Plugins" ===> It will automatically download the needed plugins
+2. Enter the Username, password, email id to sign up and click on Save & Finish
+3. Configure the url as --> http://localhost:8080
+4. By default there will be no plugins installed for Maven
+5. To download that --> Click on Manage JENKINS ---> Manage Plugins
+6. Click on available tab and search with "Maven" keyword
+7. Click on all the maven related plugins ---> Click on "Downaload now and install and restart"
+8. Once all the plugins are downloaded then click on "Restart Jenkins"
+
+
+CREATING JOB:
+------------------------
+1. Click on New Item
+2. Enter the Item name and select maven and click on Ok and enter description
+3. Under Build, an alert will display. Click on the "tool configuration"
+4. Under Maven section, click on Add Maven ----> Enter Name and click on finish
+5. Under Build --> Root POM --> Give the location where Project POM.xml is located ---> Eg : C:\Users\Vignesh\WorkSpace\RealtimeFrameworkOwnPractice\pom.xml
+6. Enter Goal and options as ---> clean install ---> Apply ----> Save
+7. Click on Manage JENKINS ---> Manage Plugins
+8. Click on available tab and search with "testng" keyword ---> Select "TestNG Results"
+9. Click on "Downaload now and install and restart"
+10. Once the plugin is downloaded then click on "Restart Jenkins"
+11. Click on the Job ---> Configure
+12. Under Post-build Actions --> Click Publish TestNG Results ----> Apply ----> Save
+
+
+RUN Job:
+-----------
+1. Click on Build Now

@@ -1,0 +1,371 @@
+OOPS:
+------------
+It is a methodology or paradigm to design a program using CLASSES and OBJECTS
+
+Object - Real world entity that has their own properties and behaviours
+Classes - Blue print from which an object properties and behaviours are decided
+
+
+				OOPS										PROCEDURAL PROGRAMMING
+1. 	Bottom Up approach										Top Down approach
+2. 	Divided in to objects									Divided in to functions
+3. 	Has Access modifiers									Does not have access modifiers
+4. 	Objects can move and communicate with 					Data can move from function to function in the system
+	each other using member functions 
+5.	More secure as it has access modifier					Less Secure
+6. 	Supports Over Loading									Does not support Overloading
+
+
+OOPS main blocks are :
+1. Inheritance
+2. Polymorphism
+3. Abstraction
+4. Encapsulation
+
+INHERITANCE : The process of acquiring properties from one class to other class
+---------------
+1. Used to reduce the length of the code and to reduce redundancy of the application.
+For inheritance use "extends"
+
+Eg 1 : Application without inheritance
+
+class A
+{
+void m1() {}
+void m2() {} 
+}
+
+class B
+{
+void m1() {}
+void m2() {}
+void m3() {}
+void m4() {}  
+}
+
+class C
+{
+void m1() {}
+void m2() {}
+void m3() {}
+void m4() {}
+void m5() {}
+void m6() {}  
+}
+
+Eg 2 : Application with inheritance
+
+class A
+{
+void m1() {}
+void m2() {} 
+}
+
+class B extends A
+{
+void m3() {}
+void m4() {}  
+}
+
+class C extends B
+{
+void m5() {}
+void m6() {}  
+}
+
+Eg 3 : 
+
+1. It is possible to create object for both parent and child class. But its always best to create object in child class.
+Then only child class created object can access parent class methods
+2. If a class not extends any class, then by default it extends "Object" class
+3. Root class of all Java class is "Object" class
+
+class A extends Object
+{
+void m1() {}
+void m2() {} 
+}
+
+class B extends A
+{
+void m3() {}
+void m4() {}  
+}
+
+class C extends B
+{
+void m5() {}
+void m6() {}
+public static void main (String[] args)
+{
+C c=new C();
+c.m1(); // created object with C class as it can access A,B class methods
+c.m2();
+c.m3();
+c.m4();
+c.m5();
+c.m6();
+}
+}
+
+Types of Inheritance :
+----------------------------
+1. Single Inheritance : When Class B extends Class A, then it is called Single inheritance
+	
+2. Multilevel Inheritance : When Class C extends Class B and Class B extends Class A, then it is called Multilevel inheritance
+
+3. Hierarchy Inheritance : When Class B,C,D extends Class A then it is called Hierarchy inheritance
+
+4. Multiple Inheritance : Not supported in Java. One child class cant extends 2 parent class. It is supported only in C++
+
+5. Hybrid Inheritance : Not supported in Java. It is a combination of Single and Multiple inheritance
+
+
+Eg 4 : Prevention of Inheritance. Use "final" keyword to prevent creation of child class
+
+final class A
+{
+void m1() {}
+void m2() {} 
+}
+
+class B extends A // not possible as class A is declared as final 
+{
+void m3() {}
+void m4() {}  
+}
+
+Eg 5 : Usage of "Super" keyword in parent variables
+
+class Parent
+{
+int a=10;
+int b=20;
+}
+
+class Child extends Parent
+{
+int a=100;
+int b=200;
+void add(int a,int b)
+{
+System.out.println(a+b);
+System.out.println(this.a+this.b);
+System.out.println(super.a+super.b);
+}
+public static void main (String[] args)
+{
+new Child().add(1000,2000); // output is 3000  300  30
+}
+}
+
+Eg 6 : Usage of "Super" keyword in parent methods
+
+class Parent
+{
+void m1()
+{System.out.println("Parent m1 method");
+}
+}
+
+class Child extends Parent
+{
+void m1()
+{System.out.println("Child m1 method");
+}
+void m2()
+{
+m1();
+super.m1();
+}
+public static void main (String[] args)
+{
+new Child().m2(); // output is Child m1 method   Parent m1 method
+}
+}
+
+Eg 7 : Usage of "Super" keyword in parent constructor
+
+class Parent
+{
+Parent()
+{
+this(10);
+System.out.println("parent-1 constructor");
+}
+Parent(int a)
+{System.out.println("parent-2 constructor");
+}
+}
+
+class Child extends Parent
+{
+Child()
+{
+this(10);
+System.out.println("child-1 constructor");
+}
+Child(int b)
+{
+super();
+System.out.println("child-2 constructor");
+}
+public static void main (String[] args)
+{
+new Child(); // output is parent-2 constructor parent-1 constructor child-2 constructor child-1  constructor
+}
+}
+
+Eg 8 : Usage of "Super" keyword in constructor must be first statement
+
+class Parent
+{
+Parent()
+{
+System.out.println("parent-1 constructor");
+}
+
+class Child extends Parent
+{
+Child()
+{
+System.out.println("child-1 constructor");
+super(); // cant declare super as 2nd statement
+}
+
+public static void main (String[] args)
+{
+new Child(); // output error is thrown as super keyword need to declared as 1st statement
+}
+}
+
+Eg 9 : Usage of super and this keyword in single constructor
+
+Child()
+{
+this(10);
+super(); //cant declare super as 2nd statement
+System.out.println("child-1 constructor");
+}
+
+Eg 10 : In class constructor even if super keyword is not declared JVM automatically declare super keyword and print 0-arg constructor present in parent class
+If the parent does not have any 0-arg constructor declared, then child class wont print even if super keyword is coded by JVM
+
+class Parent
+{
+Parent()
+{
+System.out.println("parent 0-arg constructor");
+}
+
+class Child extends Parent
+{
+Child()
+{
+//by default it will super() as the first line in constructor
+System.out.println("child 0-arg constructor");
+}
+Child(int a)
+{
+System.out.println("child 1-arg constructor");
+}
+
+public static void main (String[] args)
+{
+new Child(); // output error is parent 0-arg constructor  child 0-arg constructor
+new Child(10); // output error is parent 0-arg constructor  child 1-arg constructor
+} 
+}
+
+Eg 11 : parent class constructor will be executed even if child does not have any constructor
+
+class Parent
+{
+Parent()
+{
+System.out.println("parent 0-arg constructor");
+}
+}
+class Child extends Parent
+{
+/* code is generated by compiler
+Child()
+{super();
+}
+*/
+public static void main (String[] args)
+{
+new Child(); // output error is parent 0-arg constructor
+} 
+}
+
+
+Eg 12 : Usage of "Super" keyword in parent Instance block. 1st parent class Instance block will be executed.Then only parent class Instance block will be executed
+
+class Parent
+{
+{
+System.out.println("parent Instance block");
+}
+Parent()
+{
+System.out.println("parent 0-arg constructor");
+}
+}
+class Child extends Parent
+{
+{
+System.out.println("child Instance block");
+}
+Child()
+{
+//super(); code is generated by compiler
+System.out.println("child 0-arg constructor");
+}
+public static void main (String[] args)
+{
+new Child(); // output error is parent Instance block--parent 0-arg constructor--child Instance block--child 0-arg constructor
+} 
+}
+
+Eg 13 : Usage of "Super" keyword in parent Static block. 1st parent class Instance block will be executed.Then only parent class Instance block will be executed
+
+class Parent
+{
+{
+System.out.println("parent Instance block");
+}
+Parent()
+{
+System.out.println("parent 0-arg constructor");
+}
+static{
+System.out.println("parent static block");
+}
+}
+class Child extends Parent
+{
+{
+System.out.println("child Instance block");
+}
+Child()
+{
+//super(); code is generated by compiler
+System.out.println("child 0-arg constructor");
+}
+static{
+System.out.println("child static block");
+}
+public static void main (String[] args)
+{
+new Child(); 
+} 
+}
+
+Output :
+parent static block
+child static block
+parent Instance block
+parent 0-arg constructor
+child Instance block
+child 0-arg constructor

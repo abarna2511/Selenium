@@ -1,0 +1,290 @@
+BDD: 	Behavior Driven Development 
+---------
+Its an extension to TDD(Test Driven Development)
+BDD focus on what to test not how to test
+It uses plain english to explain what is exact requirement
+It uses Gherkin language
+
+Gherkin:
+----------
+Its a language used to write the feature file
+
+Keywords in Gherkin:
+--------------------
+The primary keywords are:
+
+- Feature
+- Rule (as of Gherkin 6)
+- Example (or Scenario)
+- Background
+- Given, When, Then, And, But (steps)
+- Scenario
+- Scenario Outline
+- Examples
+
+There are a few secondary keywords as well:
+
+- """ (Doc Strings)
+- | (Data Tables)
+- @ (Tags)
+- # (Comments)
+
+Eg : Feature file looks like
+
+Feature: Test Smoke Scenarios of Facebook
+
+Scenario: Test Facebook with Valid credentials
+Given Open chrome and start application
+When I provide valid username and password
+Then should be able to login
+
+
+INSTALLATION AND BASIC SETUP FOR CUCUMBER:
+--------------------------------------------
+1. Download the below Required Jar's() ----> Download all jars from info.cukes
+
+Notes : Use https://mvnrepository.com/ to get all the jars
+
+cobertura		- https://mvnrepository.com/artifact/net.sourceforge.cobertura/cobertura/2.1.1
+cucumber-core   - https://mvnrepository.com/artifact/info.cukes/cucumber-core/1.1.2
+cucumber-java	- https://mvnrepository.com/artifact/info.cukes/cucumber-java/1.1.2
+cucumber-junit	- https://mvnrepository.com/artifact/info.cukes/cucumber-junit/1.1.2
+cucumber-jvm-deps	- https://mvnrepository.com/artifact/info.cukes/cucumber-jvm-deps/1.0.3
+gherkin	- https://mvnrepository.com/artifact/info.cukes/gherkin/2.12.1
+junit	- https://mvnrepository.com/artifact/junit/junit/4.11
+mockito-all	- https://mvnrepository.com/artifact/org.mockito/mockito-all/2.0.2-beta
+
+2. Create a new java Project and add all the required jars
+3. Click on Help --> Install New software ---> and paste "http://cucumber.github.io/cucumber-eclipse/update-site/" and intall Cucumber Plugin
+4. Right click on the project--> New --> folder> Name it as "features"
+5. Right click on the features folder and click New --> File --> Name the file with extension as ".feature"  ===> Eg : "MyApplication.feature"
+6. Open the feature file and write the Scenarios
+Eg :
+Feature: Test Facebook Smoke Scenario
+  Scenario: Test Login with credentials
+    Given Open Chrome and start applicatin
+    When Enter Username and password
+    Then click on submit button to login
+7. In src create one package as runner
+8. Create a class as "TestRunner" and do not tick on main method
+9. Above the class block specify the following cucumber keywords
+	@RunWith(Cucumber.class)
+	@Cucumber.Options(features= "features")
+10. Right click on that "TestRunner" class and Run as --> Junit Test
+11. Copy the methods created in console
+12. In src create one package as stepdefinition
+13. Create a class as "Smoke Test" and paste the copied console methods
+14. Under each method write appropriate selenium code
+15. In "TestRunner" class add the below glue statement as
+	@RunWith(Cucumber.class)
+	@Cucumber.Options(features= "features",glue= {"stepdefinition"})
+16. Right click on that "TestRunner" class and Run as --> Junit Test
+
+
+PARAMETERS IN CUCUMBER:
+-------------------------
+1. In the feature file mention the value which need to be parametrized in double quotes
+Eg:
+Feature: Test Facebook Smoke Scenario
+  Scenario: Test Login with credentials
+    Given Open Chrome and start applicatin
+    When Enter "abc@gmail.com" and "selenium@123"
+    Then click on submit button to login
+2. Right click on that "TestRunner" class and Run as --> Junit Test
+3. Copy the methods created in console and paste in step definition file and edit the method with the required parameters accordingly
+4. Right click on that "TestRunner" class and Run as --> Junit Test
+
+
+CONVERTING EXISTING IN TO MAVEN PROJECT:
+-----------------------------------------
+1. File ---> New ---> Project ---> Maven Project ---> Click on "Create a Simple project"
+2. Enter the Group Id and Artifact Id and click on finish
+3. Dependancy needed are
+	cucumber-java
+	cucumber-jvm
+	cucumber-jvm-deps
+	cucumber-reporting
+	cucumber-junit
+	cucumber-picocontainer
+	junit
+	gherkin
+	selenium-java
+	
+4. Expand the project and double click on pom.xml and paste all the 4 dependencies in it as following
+  <dependencies>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-jvm</artifactId>
+			<version>1.2.5</version>
+			<type>pom</type>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-jvm-deps</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>gherkin</artifactId>
+			<version>2.12.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+  </dependencies>
+
+5. Copy the features folder, runner package and stepdefinition package from previous project and paste in the cucumber maven project
+6. Edit the TestRunner class file from @Cucumber.Options to @CucumberOptions and import it from "import cucumber.api.CucumberOptions;"
+
+
+DATA DRIVEN TESTING USING CUCUMBER:
+-----------------------------------
+1. On the feature file change the Scenario to Scenario Outline and add Examples to mention the various data and use <data1Name> and <data2Name> etc in the file to generalize
+
+Feature: Test Facebook Smoke Scenario
+
+  Scenario Outline: Test Login with credentials
+    Given Open Chrome and start application
+    When Enter "<username>" and "<password>"
+    Then click on submit button to login
+
+    Examples: 
+      | username      | password    |
+      | abc@gmail.com | cucumberabc |
+      | xyz@gmail.com | cucumberxyz |
+
+
+2. Right click on that "TestRunner" class and Run as --> Junit Test
+
+
+DRYRUN:
+-----------
+Its used to check whether all the items from feature file is implemented or not
+
+1. Enter as following in TestRunner file
+
+@CucumberOptions(features= "C:\Users\Vignesh\WorkSpace\CucumberMavenOwnPractice\features\MyApplication.feature",
+glue= "stepdefinition",
+dryRun = true
+)
+
+2. Right click on that "TestRunner" class and Run as --> Junit Test
+3. If there are any unimplemented methods, then it will show in console
+4. Note : If the actual selenium code need to run, then need to make dryRun = false
+
+
+FORMAT:
+-------
+It is used to create various reports such as HTML, JSON, JUnit etc
+
+Enter as following in TestRunner file
+
+@CucumberOptions(features= "C:\Users\Vignesh\WorkSpace\CucumberMavenOwnPractice\features\MyApplication.feature",
+glue= "stepdefinition",
+format= {"pretty","html:target/reports/cucumber.html","json:target/reports/cucumber.json","junit:target/reports/cucumber.xml"},
+dryRun = false
+)
+2. Right click on that "TestRunner" class and Run as --> Junit Test
+3. Check the target/reports folder --> It would have created report of HTML, JSON, JUnit
+
+
+MONOCHROME:
+------------
+It is used to present the output in console in readable format
+
+Enter as following in TestRunner file
+
+@CucumberOptions(features= "C:\Users\Vignesh\WorkSpace\CucumberMavenOwnPractice\features\MyApplication.feature",
+glue= "stepdefinition",
+format= {"pretty","html:test-output"},
+monochrome = true,
+dryRun = true
+)
+2. Right click on that "TestRunner" class and Run as --> Junit Test
+3. Check the output --> It will be in readable format
+
+
+STRICT:
+--------
+It will fail the code if there are unimplemented methods
+
+Enter as following in TestRunner file
+
+@CucumberOptions(features= "C:\Users\Vignesh\WorkSpace\CucumberMavenOwnPractice\features\MyApplication.feature",
+glue= "stepdefinition",
+format= {"pretty","html:target/reports/cucumber.html","json:target/reports/cucumber.json","junit:target/reports/cucumber.xml"},
+monochrome = true,
+strict = true,
+dryRun = false
+)
+2. Right click on that "TestRunner" class and Run as --> Junit Test
+3. It will fail if there are unimplemented method and also will display the method need to be implemented in the console
+
+
+TAGS:
+----------
+It is used to execute the methods based up on the tags given in the feature file
+
+Feature: Demo for Cucumber Tags in FreeCrm
+
+  @SmokeTest
+  Scenario: Create a contact
+    Given This is a contact testcase
+    
+  @RegressionTest 
+  Scenario: Create a deal
+    Given This is a deal testcase
+    
+  @E2ETest
+	Scenario: Create a tasks
+    Given This is a tasks testcase
+    
+  @SmokeTest @RegressionTest @E2ETest
+  Scenario: Create a case
+    Given This is a case testcase
+    
+  @RegressionTest @E2ETest
+  Scenario: Search a contact
+    Given This is a search contact testcase
+
+1. tags= {"@SmokeTest"} ===> Will execute only smoke test methods
+2. tags= {"@SmokeTest","@RegressionTest"} ===> Will execute methods which have both smoke and regression tags(AND operator)
+3. tags= {"@SmokeTest,@RegressionTest"} ===> Will execute methods which have either smoke or regression tags(OR operator)

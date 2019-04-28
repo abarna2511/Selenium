@@ -1,0 +1,18 @@
+Browser Run:
+
+First need to install drivers for diff browser such as chrome browser, firefox
+
+To Launch an browser:
+-------------------------
+
+1. Chrome Browser:
+System.setProperty("webdriver.chrome.driver", "F:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver = new ChromeDriver();
+
+2. FireFox Browser:
+System.setProperty(	"webdriver.gecko.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\geckodriver-v0.24.0-win64\\geckodriver.exe");
+WebDriver driver =new FirefoxDriver();
+
+3. Internet Explorer:
+System.setProperty(	"webdriver.ie.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\IEDriverServer_x64_3.14.0\\IEDriverServer.exe");
+WebDriver driver =new InternetExplorerDriver();

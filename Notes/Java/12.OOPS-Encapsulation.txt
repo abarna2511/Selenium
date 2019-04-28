@@ -1,0 +1,67 @@
+ENCAPSULATION:
+---------------
+Encapsulation simply means binding object state(fields) and behaviour(methods) together.
+The whole idea behind encapsulation is to hide the implementation details from users. 
+If a data member is private it means it can only be accessed within the same class.No outside class can access private data member (variable) of other class.
+However if we setup public getter and setter methods to update and read the private data fields then the outside class can access those private data fields via public methods.
+
+To acheive encapsulation in java:
+------------------------------------
+1. Make the instance variables private so that they cannot be accessed directly from outside the class. You can only set and get values of these variables through the methods of the class.
+2. Have getter and setter methods in the class to set and get the values of the fields.
+
+Benefits:
+-------------
+1. The fields of a class can be made read only or write only
+2. A class can have total control over what is stored in its fields
+3. The users of the class does not know how the class stores its data. A class can change the data type of a field and user of the class do not need to change any of their code 
+
+Eg:
+
+public class EncapDemo {
+	
+	private int ssn = 100;
+    private String empName = "Vignesh";
+    private int empAge;
+    
+	public int getSsn() {
+		return ssn;
+	}
+	public void setSsn(int ssn) {
+		this.ssn = ssn;
+	}
+	
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	
+	public int getEmpAge() {
+		return empAge;
+	}
+	public void setEmpAge(int empAge) {
+		this.empAge = empAge;
+	}
+}
+
+public class EncapsTest {
+	
+	 public static void main(String args[]){
+		 EncapDemo obj = new EncapDemo();
+         obj.setEmpName("Mario");
+         obj.setEmpAge(32);
+         obj.setSsn(112233);
+         System.out.println("Employee Name: " + obj.getEmpName());
+         System.out.println("Employee SSN: " + obj.getSsn());
+         System.out.println("Employee Age: " + obj.getEmpAge());
+    } 
+}
+
+
+Output:
+
+Employee Name: Mario
+Employee SSN: 112233
+Employee Age: 32

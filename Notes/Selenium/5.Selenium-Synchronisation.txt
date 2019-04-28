@@ -1,0 +1,46 @@
+IMPLICIT WAIT:		It is the wait time declared globally. 
+-----------------
+driver.manage.timeouts().implicitlyWait(30,TimeUnit.seconds)
+
+Here we have given time as 30 secs. For example after clicking of any web element if it takes only 4 secs to load, then Selenium will proceed with testing
+It wont wait for whole 30 secs
+
+Eg:
+
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver =new ChromeDriver();
+driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+driver.get("https://www.alaskaair.com/hotels/mp/home/en/?t=1553612102967");
+driver.findElement(By.xpath("//input[@placeholder='Where do you need a hotel?']")).sendKeys("nyc");
+Thread.sleep(3000);
+driver.findElement(By.xpath("//input[@placeholder='Where do you need a hotel?']")).sendKeys(Keys.TAB);
+driver.findElement(By.xpath("//button[@type='submit']")).click();
+driver.findElement(By.xpath("//span[text()='New York Marriott at the Brooklyn Bridge']")).click();
+
+
+EXPLICIT WAIT:	 Is not declared globally. Can declare wait for specific element
+-----------------
+
+Syntax - 
+WebDriverWait wait=new WebDriverWait(driver,30); ---> Where 30 is number of seconds to wait
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.Xpath("")));
+
+Eg:
+
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver =new ChromeDriver();
+driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+driver.get("https://www.alaskaair.com/hotels");
+driver.findElement(By.xpath("//input[@placeholder='Where do you need a hotel?']")).sendKeys("nyc");
+Thread.sleep(3000);
+driver.findElement(By.xpath("//input[@placeholder='Where do you need a hotel?']")).sendKeys(Keys.TAB);
+driver.findElement(By.xpath("//button[@type='submit']")).click();
+WebDriverWait wait = new WebDriverWait(driver, 20);
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='New York Marriott at the Brooklyn Bridge']")));
+driver.findElement(By.xpath("//span[text()='New York Marriott at the Brooklyn Bridge']")).click();
+
+
+Thread.Sleep:	
+---------------
+Its not part of Selenium. Its a java concept.
+Its used to pause the execution blindly for given time.

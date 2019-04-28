@@ -1,0 +1,292 @@
+CONSTRUCTORS :
+
+Different ways to create object :
+
+1. new keyword
+2. Instance factory method
+3. Static factory method
+4. Pattern factory method
+5. newInstance() method
+6. clone() method
+7. De-Serialization method
+
+class Test
+{
+}
+
+Test t = new Test();
+Test -----> class name
+t -----> ref variable (object name)
+= -----> assignment operator
+new -----> keyword used to create object
+Test() -----> Constructor
+
+Rules to declare Constructors :
+-----------------------------------------
+
+1. Constructor name and class name must be same
+2. Constructor able to take parameters
+3. Constructor are not allowed for return types
+
+Eg 1 : When not declaring any constructor, JVM declares 0 argument constructor which is called default constructor
+
+class Test
+{
+	void m1() // instance method
+	{
+	System.out.println("m1 method");
+	}
+	/* default constructor
+	Test()
+	{
+	}
+	*/
+	public static void main(String[] args)
+		Test t = new Test();
+		t.m1();
+	}
+}
+
+Eg 2 :Parametrized constructor or user defined constructor
+
+class Test
+{
+	void m1() // instance method
+	{
+	System.out.println("m1 method");
+	}
+	
+	//User defined constructor
+	Test()
+	{
+	System.out.println("0-arg constructor");
+	}
+	Test(int a)
+	{
+	System.out.println("1-arg constructor");
+	}
+	
+	public static void main(String[] args)
+	{
+		Test t = new Test(); // Output is 0-arg constructor
+		Test t1 = new Test(10); // Output is 1-arg constructor
+		t.m1(); // Output is m1 method
+		t1.m1(); // Output is m1 method
+	}
+}
+
+Eg 3 :Inside class if not declaring at least 1 constructor, it will create default constructor. If 1 constructor is declared then it wont create default constructor
+
+class Test
+{
+	Test(int a)
+	{
+	System.out.println("1-arg constructor");
+	}
+	
+	public static void main(String[] args)
+	{
+		Test t = new Test(); // It will throw compilation error as Test() is not present inside the class
+		Test t1 = new Test(10);
+	}
+}
+
+Advantages of constructor:
+-----------------------------------------
+1. Constructors are used to write business logics where those logics are executed during object creation (25% advantage)
+2. Constructors are used to initialize some values to the instance variable during object creation (75% advantage)
+
+Eg 5 : 
+
+class Emp
+{
+	int eid;
+
+	Emp()
+	{
+	eid=111;
+	}
+	void disp()
+	{
+	System.out.println("employee id = "+eid);
+	}
+	public static void main(String[] args)
+	{
+		Emp e = new Emp();
+		e.disp(); // Output is employee id = 111
+	}
+}
+
+Eg 6 : When variables are declared in constructor it become as local variable. So the method cant call those variable
+
+class Emp
+{
+	int eid; // instance variable
+
+	Emp(int eid)
+	{
+	}
+	void disp()
+	{
+	System.out.println("employee id = "+eid);
+	}
+	public static void main(String[] args)
+	{
+		Emp e1 = new Emp(111);
+		e1.disp(); // Output is employee id = 0 because it cant pull eid from constructor
+		Emp e2 = new Emp(222);
+		e2.disp(); // Output is employee id = 0 because it cant pull eid from constructor
+	}
+}
+
+Eg 7 : To overcome above issue convert local variable to instance variable by using "this" keyword
+
+class Emp
+{
+	int eid; // instance variable
+
+	Emp(int eid)
+	{
+	this.eid=eid; // conversion of local to instance variable
+	}
+	void disp()
+	{
+	System.out.println("employee id = "+eid);
+	}
+	public static void main(String[] args)
+	{
+		Emp e1 = new Emp(111);
+		e1.disp(); // Output is employee id = 111
+		Emp e2 = new Emp(222);
+		e2.disp(); // Output is employee id = 222
+	}
+}
+
+Constructor calling :
+-----------------------------------------
+Use "this" Keyword for Constructor calling
+
+Eg 8 : 
+
+class Test
+{	
+	Test()
+	{
+	this(10);
+	System.out.println("0-arg-Constructor");
+	}
+	
+	Test(int a)
+	{
+	this(10,20);
+	System.out.println("1-arg-Constructor");
+	}
+	
+	Test(int a,int b )
+	{
+	System.out.println("2-arg-Constructor");
+	}
+	
+	public static void main(String[] args)
+	{
+		Test t1=new Test(); // Output is 2-arg-Constructor 1-arg-Constructor 0-arg-Constructor
+		
+	}
+}
+
+Eg 9 : In constructor calling, only this keyword should be as the 1st statement. If not it will throw compilation error
+
+class Test
+{	
+	Test()
+	{
+	System.out.println("0-arg-Constructor");
+	this(10);	
+	}
+	
+	Test(int a)
+	{
+	System.out.println("1-arg-Constructor");
+	this(10,20);
+	}
+	
+	Test(int a,int b )
+	{
+	System.out.println("2-arg-Constructor");
+	}
+	
+	public static void main(String[] args)
+	{
+		Test t1=new Test(); // Output is error:call to this must be first statement in constructor
+		
+	}
+}
+
+Eg 10 : One constructor is able to call only one constructor at a time. i.e only one this keyword can be used inside one constructor
+
+class Test
+{	
+	Test()
+	{
+	this(10);
+	this(10,20);
+	System.out.println("0-arg-Constructor");
+	}
+	
+	Test(int a)
+	{
+	System.out.println("1-arg-Constructor");
+	}
+	
+	Test(int a,int b )
+	{
+	System.out.println("2-arg-Constructor");
+	}
+	
+	public static void main(String[] args)
+	{
+		Test t1=new Test(); // Output is error:call to this must be first statement in constructor as this(10,20) is called as 2nd statement
+		
+	}
+}
+
+
+Formats of object creation : Mostly used is nameless approach only
+----------------------------
+
+1. Named object approach : 
+		Test t=new Test();
+	
+2. Nameless approach : 
+		new Test(); 
+		
+Eg 11 :	
+
+class Test
+{	
+	Test()
+	{
+	System.out.println("0-arg-Constructor");
+	}
+	Test(int a)
+	{
+	System.out.println("1-arg-Constructor");
+	}
+	Test(int a,int b )
+	{
+	System.out.println("2-arg-Constructor");
+	}
+	public static void main(String[] args)
+	{
+		// named approach
+		Test t1=new Test();
+		Test t2=new Test(10);
+		Test t3=new Test(10,20);
+		
+		// nameless approach
+		new Test();
+		new Test(10);
+		new Test(10,20);
+	}
+}
+

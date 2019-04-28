@@ -1,0 +1,102 @@
+HEADLESS BROWSER:
+------------------
+As name suggest it does not have any head it means you cannont see it but it runs internally
+
+HTML Unit Driver:
+-----------------
+This is currently fastest and most light weight implementation of webdriver. As name suggests its based on HTML Unit
+
+Pros:
+1. Fastest implementation of webdriver
+2. A pure java solution so platform independent
+3. Supports javascript
+
+Cons:
+Not suitable for action class - mouse movement, doubleclick etc
+
+
+Note : After Selenium 3.0 , HtmlUnit driver is not added in the default library
+
+How To Download:
+----------------
+Go to url https://github.com/SeleniumHQ/htmlunit-driver/releases
+Click on htmlunit-driver-2.34.0-jar-with-dependencies.jar and download
+Once its downloaded right click on the properties and add this jar file
+
+Eg:
+
+package headlessbrowser;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.testng.annotations.Test;
+
+public class VerifyTitleHtmlUnit {
+	
+	WebDriver driver;
+	
+	@Test
+	public void verifyFacbookTitle() throws Exception {
+		
+		System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+		driver = new HtmlUnitDriver();
+		//driver =new ChromeDriver();
+		driver.get("https://classic.crmpro.com/index.html");
+		System.out.println("Login Page Title is === "+driver.getTitle());
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("vignesh1810");
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("vignesh1810");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+		Thread.sleep(3000);
+		System.out.println("Home Page Title is === "+driver.getTitle());
+		driver.quit();
+	}
+
+}
+
+
+Using Chrome Options:
+---------------------
+We can convert chrome browser in to headless using following
+
+ChromeOptions options = new ChromeOptions();
+options.addArguments("window-size=1400,800");
+options.addArguments("headless");
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+driver =new ChromeDriver(options);
+
+
+
+Eg:
+
+package headlessbrowser;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
+
+public class VerifyTitleChromeOptions {
+	
+	WebDriver driver;
+	
+	@Test
+	public void verifyFacbookTitle() throws Exception {
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("window-size=1400,800");
+		options.addArguments("headless");
+		System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+		driver =new ChromeDriver(options);
+		driver.get("https://classic.crmpro.com/index.html");
+		System.out.println("Login Page Title is === "+driver.getTitle());
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("vignesh1810");
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("vignesh1810");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@value='Login']")).click();
+		Thread.sleep(3000);
+		System.out.println("Home Page Title is === "+driver.getTitle());
+		driver.quit();
+	}
+}

@@ -1,0 +1,73 @@
+Page Object Pattern:
+
+1. Easy to maintain
+2. Easy readability of scripts
+3. Reduce or eliminate duplicacy
+4. Reusability of code
+5. Reliability
+
+
+Steps:
+--------
+1. Create a new java project
+2. Create 2 packages --- ObjectRepository and Testcases
+3. In ObjectRepository create seperate class for login Page objects, Home Page objects etc
+
+package objectrepository;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class LoginPage {
+	
+	WebDriver driver;
+	
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	By username = By.name("username");
+	By password = By.name("password");
+	By loginButton = By.xpath("//input[@value='Login']");
+	
+	
+	public WebElement enterUserName() {
+		return driver.findElement(username);
+	}
+	
+	public WebElement enterPassword() {
+		return driver.findElement(password);
+	}
+	
+	public WebElement clickLoginButton() {
+		return driver.findElement(loginButton);
+	}	
+}
+
+
+4. Create a LoginTest and use the objectrepository 
+
+package testcases;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+import objectrepository.LoginPage;
+
+public class LoginTest {
+	WebDriver driver;
+	@Test
+	public void login() {
+		System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+		driver =new ChromeDriver();
+		driver.get("https://classic.crmpro.com/login.cfm");
+		LoginPage login = new LoginPage(driver);
+		login.enterUserName().sendKeys("vignesh1810");
+		login.enterPassword().sendKeys("vignesh1810");
+		login.clickLoginButton().click();
+	}
+
+}
+

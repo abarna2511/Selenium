@@ -1,0 +1,255 @@
+METHODS:
+
+Method syntax is --> Modifiers-List Return-Type Method-name(parameters list) throws exception
+
+Eg :  
+public void m1(int a,int b)
+private int m2()
+protected int m3(int a, int b) throws exception
+
+Method signature --> Method-name(parameters list)
+
+1. Instance method : 
+-------------------------------
+
+void m1() 
+{
+logics here
+}
+
+
+2. Static method : 
+-------------------------------
+
+static void m1() 
+{
+logics here
+}
+
+Example - 1 : Without parameters
+
+class Test
+{
+	void m1() // instance method
+	{
+		System.out.println("m1 method");
+	}
+	static void m2() // static method
+	{
+		System.out.println("m2 method");
+	}
+	public static void main(String[] args)
+		Test t = new Test();
+		t.m1();
+		Test.m2();
+	}
+}
+
+Example - 2 : With noramal primitive parameters
+
+class Test
+{
+	void m1(int a ,char ch) // a, ch are local variables
+	{	
+		System.out.println("m1 method");
+		System.out.println(a);
+		System.out.println(ch);
+	}
+	static void m2(String str, double d) // static method
+	{	
+		System.out.println("m2 method");
+		System.out.println(str);
+		System.out.println(d);
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.m1(10,'a'); // can pass the value for the variables while calling method 
+		Test.m2("name",1.5);
+	}
+}
+
+
+Example - 3 : With objects as parameters
+
+class X{}
+class Emp{}
+class Y{}
+class Student{}
+class Test
+{
+	void m1(X x,Emp e) // X,Emp are class
+	{	
+		System.out.println("m1 method");
+	}
+	static void m2(Y y,Student s) // Y,Student are class
+	{	
+		System.out.println("m2 method"); 
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		X x = new X();
+		Emp e1 = new Emp();
+		t.m1(x,e1); // It's not mandatory to use the same object reference name used in the method signature
+		Y y = new Y();
+		Student s1 = new Student(); // It's not mandatory to use the same object reference name used in the method signature
+		Test.m2(y,s1);
+		
+	}
+}
+
+Example - 4: 
+
+Duplicates method are not allowed. i.e inside class it is not possible 2 method with same signature
+
+class Test
+{
+	void m1()
+	{	
+		System.out.println("m1 method");
+	}
+	void m1()
+	{	
+		System.out.println("m2 method"); 
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.m1();	// It will throw error as "method m1() is already defined in class Test"
+	}
+}
+
+Same method name but different signature are allowed
+
+class Test
+{
+	void m1()
+	{	
+		System.out.println("m1 method");
+	}
+	void m1(int a)
+	{	
+		System.out.println("m2 method"); 
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.m1();	// output is m1 method
+		t.m1(10); // output is m2 method
+	}
+}
+
+Example - 5: Return-Type is mandatory. Without Return-Type it will throw error
+
+class Test
+{
+	m1()
+	{	
+		System.out.println("m1 method");
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.m1();	// It will throw error as "invalid method declartion. return type required"
+	}
+}
+
+Example - 6: Inner method is not allowed. It will throw error
+
+class Test
+{
+	void m1()
+	{	
+		System.out.println("m1 method");
+		
+			void m2() // inner method
+			{	
+				System.out.println("m2 method");
+			}
+	}
+	
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.m1(); // throws error as "illegal start of expression"
+	}
+}
+
+Example - 7: Method calling
+
+class Test
+{
+	void m1()
+	{	
+		System.out.println("m1 method");
+		m2(); // Instance method calling
+		m3(10);
+	}
+	void m2()
+	{	
+		System.out.println("m2 method");
+	}
+	void m3(int a)
+	{	
+		System.out.println("m3 method");
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.m1(); // Output is m1 method m2 method m3 method
+	}
+}
+
+Example - 8: Both instance and local variables has same name. Always first priority goes to local variables. To show a difference to instance variables use "this" keyword 
+
+class Test
+{
+	int x=100;
+	int y=200;
+	void add(int x,int y)
+	{	
+		System.out.println(x+y); // local variable
+		System.out.println(this.x+this.y); // to show its instance variables
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.add(888,999); // Output is 1887 300
+	}
+}
+
+Example - 9: Inside static method "this" keyword is not allowed
+
+class Test
+{
+	int x=100;
+	int y=200;
+	static void add(int x,int y)
+	{
+		System.out.println(this.x+this.y);
+	}
+	public static void main(String[] args)
+	{
+		Test t = new Test();
+		t.add(888,999); // Throws error as "non static variable this cannot be referenced from a static context"
+	}
+}
+
+Example - 10: Only one Operator overloading is "+"
+
+class Test
+{
+
+	public static void main(String[] args)
+	{
+		System.out.println("Viki"+"Super"); // Output is VikiSuper
+		System.out.println(10+20); // Output is 30
+		System.out.println(10+20+"Viki"+"Super"+100+200); // Output is 30VikiSuper100200
+		int a=10;
+		int b=20;
+		int c=30;
+		System.out.println(a+"---"+b+"---"+c); // Output is 10---20---30
+	}
+}
+ 

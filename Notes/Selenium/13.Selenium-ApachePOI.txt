@@ -1,0 +1,147 @@
+How to Download Apache POI Jar:
+-------------------------------
+1. Go to Google and search for "apache poi jar download" and open their official link https://poi.apache.org/download.html
+2. Download the latest stable version zip file and unzip it
+3. Click on Java Build Path --> Click on Libraries Tab --> Click on the ClassPath(If available) and click on Add External Jars
+4. Select all the Jars from the downloaded folder
+
+
+
+READ DATA FROM EXCEL : 
+----------------------
+
+Steps:
+-------
+1. Once Jar files are imported create a new folder in the project area
+2. Create an excel sheet and entry dummy username and password
+3. Create a seperate class and enter the following
+
+		File src = new File("C:\\Users\\Vignesh\\WorkSpace\\Selenium-Own-Practice\\ExcelData\\TestData.xlsx");
+		FileInputStream fis = new FileInputStream(src);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet s1 = wb.getSheetAt(0);
+		String data0 = s1.getRow(0).getCell(0).getStringCellValue();
+		System.out.println(data0);
+		String data1 = s1.getRow(0).getCell(1).getStringCellValue();
+		System.out.println(data1);
+		wb.close();
+
+Note : When ever we have to use .xlsx file we have to import "XSSFWorkbook". Where if we have to use .xls file we have to import "HSSFWorkbook".
+
+
+To read All row data:
+-------------------------
+
+package readexceldata;
+
+import java.io.File;
+import java.io.FileInputStream;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.Test;
+
+public class ReadExcel2 {
+	@Test
+	public void readExcelData() throws Exception {
+		
+		File src = new File("C:\\Users\\Vignesh\\WorkSpace\\Selenium-Own-Practice\\ExcelData\\TestData.xlsx");
+		FileInputStream fis = new FileInputStream(src);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet s1 = wb.getSheetAt(0);
+		int rowCount = s1.getLastRowNum();
+		int colCount = 1;
+		//Always it will save row count as index. So if there are 10 rows then rowCount will be 9
+		System.out.println("Total row is "+rowCount);
+		
+		for (int i = 0; i <= rowCount; i++) {
+			for (int j = 0; j <= colCount ; j++) {
+				String data0=s1.getRow(i).getCell(j).getStringCellValue();
+				System.out.println(data0);
+			}
+		}
+		wb.close();
+	}
+}
+
+
+How to write general library to use excel code:
+--------------------------------------------------
+1. Create a package called library and create a class as ExcelDataConfig and place the following code
+
+package library;
+
+import java.io.File;
+import java.io.FileInputStream;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelDataConfig {
+	XSSFWorkbook wb;
+	XSSFSheet s1;
+	public ExcelDataConfig(String excelPath ){
+		try {
+			File src = new File(excelPath);
+			FileInputStream fis = new FileInputStream(src);
+			wb = new XSSFWorkbook(fis);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public String getData(int sheetNumber, int row, int col) {
+		s1 = wb.getSheetAt(sheetNumber);
+		String data = s1.getRow(row).getCell(col).getStringCellValue();
+		return data;
+	}
+}
+
+
+2. In the test case we can use the configured excel data as
+
+package readexceldata;
+
+import org.testng.annotations.Test;
+import library.ExcelDataConfig;
+
+public class ReadExcelParametrized {
+	
+	@Test
+	public void readExcelData(){
+		ExcelDataConfig excel = new ExcelDataConfig("C:\\Users\\Vignesh\\WorkSpace\\Selenium-Own-Practice\\ExcelData\\TestData.xlsx");
+		System.out.println(excel.getData(0, 0, 0));
+	}
+}
+
+
+
+WRITE DATA FROM EXCEL : 
+--------------------------
+
+package readexceldata;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.Test;
+
+public class WriteExcel {
+	
+	@Test
+	public void readExcelData() throws Exception {
+		
+		File src = new File("C:\\Users\\Vignesh\\WorkSpace\\Selenium-Own-Practice\\ExcelData\\TestData.xlsx");
+		FileInputStream fis = new FileInputStream(src);
+		XSSFWorkbook wb = new XSSFWorkbook(fis);
+		XSSFSheet s1 = wb.getSheetAt(0);
+		s1.getRow(0).createCell(2).setCellValue("PASS");
+		s1.getRow(1).createCell(2).setCellValue("FAIL");
+		s1.getRow(2).createCell(2).setCellValue("PASS");
+		FileOutputStream fos = new FileOutputStream(src);
+		wb.write(fos);
+		wb.close();
+	}
+
+}

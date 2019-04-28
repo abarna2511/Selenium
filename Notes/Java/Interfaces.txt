@@ -1,0 +1,76 @@
+INTERFACES:
+--------------
+Interfaces are the reference types which are similar to classes but contains only abstract methods.
+
+Why Interface used??
+------------------------
+1. Interface are used to implement the expected behaviour of a system/data type
+2. Java does not support multiple inheritance. hence interface are implemented
+3. A class can extend only 1 class but can implement multiple interfaces	
+
+Properties:
+------------
+1. Cannot be instantiated
+2. Do not contain constructors or instance fields
+3. Contains only abstract methods
+4. Interface is implemented by a class
+5. An interface can extend multiple interfaces
+6. Attributes values defined in interface can be used in a class. But its value cannot be changed
+
+
+Eg:
+
+package interfaceconcept;
+
+public interface Interface {
+	
+	int add (int a, int b);
+	int mul (int a, int b);
+	int attribute = 100;
+}
+
+package interfaceconcept;
+
+public interface Interface2 extends Interface{
+	
+	int div (int a, int b);
+}
+
+
+package interfaceconcept;
+
+import java.util.Scanner;
+
+public class InterfaceClass1 implements Interface2{
+	
+	public int add(int a, int b) {
+		return(a+b);
+	}
+
+	public int mul(int a, int b) {
+		return(a*b);
+	}
+
+	public int div(int a, int b) {
+		return(a/b);
+	}
+	
+	public static void main(String[] args) {
+		InterfaceClass1 i1 = new InterfaceClass1();
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter two numbers");
+		int x = sc.nextInt();
+		int y = sc.nextInt();
+		
+		int addresult = i1.add(x, y);
+		int mulresult = i1.mul(x, y);
+		int divresult = i1.div(x, y);
+		
+		System.out.println("Added values are "+addresult );
+		System.out.println("Multiplied values are "+mulresult );
+		System.out.println("Attribute value is "+i1.attribute);
+		System.out.println("Divided values are "+divresult );
+	}
+}
+

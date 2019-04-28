@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="6" time="0.122715">
+<testcase classname="Demo for Cucumber Tags in FreeCrm" name="Create a contact" time="0.121867">
+<system-out><![CDATA[Given This is a contact testcase............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Demo for Cucumber Tags in FreeCrm" name="Create a deal" time="0.00017">
+<system-out><![CDATA[Given This is a deal testcase...............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Demo for Cucumber Tags in FreeCrm" name="Create a case" time="0.000199">
+<system-out><![CDATA[Given This is a case testcase...............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Demo for Cucumber Tags in FreeCrm" name="Search a contact" time="0.000179">
+<system-out><![CDATA[Given This is a search contact testcase.....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Demo for Cucumber Tags in FreeCrm" name="Search a deal" time="0.00013">
+<system-out><![CDATA[Given This is a search deal testcase........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Demo for Cucumber Tags in FreeCrm" name="Search a case" time="0.00017">
+<system-out><![CDATA[Given This is a search case testcase........................................passed
+]]></system-out>
+</testcase>
+</testsuite>

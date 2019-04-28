@@ -1,0 +1,387 @@
+COLLECTIONS:
+----------------
+1. Collections are the containers that group multiple items in single unit
+2. It provides an architecture to store and manipulate a group of objects
+3. Using collection we can perform searching, sorting, insertion, manipulation, deletion etc
+4. Collection provides many interface an classes
+
+
+********** PLS REFER THE COLLECTION DIG  ************************
+
+
+ITERATOR : The iterator interface provide the facility of iterating the elements only in forward direction
+
+ITERABLE : It is the root interface of all the collection classes. The collection interface along with all its subclass also implement the iterable interface
+
+COLLECTION : Collection interface is implemented by all the classes in the collection framework & declares the method that every collection will contain
+
+
+INTERFACES:
+------------
+Set
+List
+Queue
+Dequeue
+
+CLASSES:
+-----------
+Array List
+Vector
+Linked List
+Hash Set
+Tree set
+Priority Queue
+De-priority Queue
+
+
+LIST:
+--------
+Java List is an interface that extents the collection and contains ordered collection of elements including DUPLICATE VALUES
+
+LIST TYPES:
+------------
+1. Array List
+2. Linked List
+3. Vector
+
+
+1. ARRAY LIST:	It is an implementation of the list interface where the elements can be dynamically added or removed from the list
+-------------- 
+
+Properties of ArrayList
+ 1. Can contain duplicate values
+ 2. Maintains insertions ordering
+ 3. It is not synchronized(Not thread safe)
+ 4. Allows random access to fetch the element because it stores the values on basis of indexes
+
+
+Generic Vs Non-Generic:  Before JDK 1.5 there is no generics
+-------------------------
+
+ArrayList ar = new ArrayList(); ---> this is a non generic. Bcz we can save array list with any data type such as int, float, string etc
+
+ArrayList<Integer> ar = new ArrayList<Integer>(); ---> This is generic. As this array list will accept only Integer values
+
+
+It can also accept the class objects
+
+Eg:
+
+//Creating objects for Employee class
+		
+		Employee e1 = new Employee("Vignesh", 25, "QA");
+		Employee e2 = new Employee("Tom", 22, "Dev");
+		Employee e3 = new Employee("Peter", 23, "Admin");
+		
+		ArrayList<Employee> ar2 = new ArrayList<Employee>();
+		ar2.add(e1);
+		ar2.add(e2);
+		ar2.add(e3);
+		
+		//Using Iterator
+		
+		Iterator<Employee> it = ar2.iterator();
+		while(it.hasNext()) {
+			Employee emp = it.next();
+			System.out.println(emp.name);
+			System.out.println(emp.age);
+			System.out.println(emp.dept);
+		}
+1. When the array is saved with indexes we can traverse using for loop
+2. But when the array list is saved with user defined class objects then have to use iterator
+
+3. We can use addAll() method to add two array list
+Eg:
+ArrayList<String> ar3 = new ArrayList<String>();
+		ar3.add("Agilysys");
+		ar3.add("SDET");
+		
+		ArrayList<String> ar4 = new ArrayList<String>();
+		ar4.add("AON");
+		ar4.add("QA");
+		
+		ar3.addAll(ar4);
+		
+		for(int i=0; i<ar3.size(); i++) {			
+			System.out.println(ar3.get(i));
+		}
+Output:
+Agilysys
+SDET
+AON
+QA
+
+4. Similar to addall, there is one more method called removeAll() to removed the added array list
+
+5. retainAll ---> This method is used to retain the common value between 2 array list
+
+6. Using set method we can edit any value in the array list
+
+7. contains method is used to search in array list
+Eg:
+ArrayList<String> list1 = new ArrayList<String>();
+list1.add("John")
+list1.add("Jim")
+if(list1.contains("John"))
+{
+System.out.println("John is present in the list");
+}
+
+
+
+2. LINKED LIST:	It is a dynamic array which stores data based on 2 things --> Actual data and reference data
+-------------- 
+ 
+LinkedList<String> ll = new LinkedList<String>();
+		ll.add("test");
+		ll.add("selenium");
+		ll.add("java");
+	
+System.out.println("Content of Linked list"+ll);  ---> Output is Content of Linked list[test, selenium, java]
+
+1. addFirst() --> It adds the value as first of the list
+2. addLast() --> It adds the value as last of the list
+3. set() method --> Used to edit the value in specifid index --> if index 0 has value as "test" if we use ll.set(1, "Dev") then index 0 will be changed from test to dev
+4. removeFirst() --> It removes the first value of the list
+5. removeFirstLast() --> It removes the last value of the list
+
+6. To print all the values we can use --> for loop, advance for loop, iterator and while loop
+
+
+3. VECTOR:
+------------------
+
+Vector are similar to arrays where the elements of the vector object can be accessed via an index to the vector
+Vector implements a dynamic array and is not limited to a specific size and is synchronized
+
+
+
+QUEUE :		It follows FIFO(First in First Out) approach. Queue has 2 values. Front and rear
+----------
+
+4. PRIORITY QUEUE:	 It sorts the data for us
+------------------
+1. Peeking - Obtaining the head of the queue
+2. Polling - Remove the head of the queue
+
+Eg:
+
+PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
+		
+		for(int i=10; i>0; i--) {
+			queue.add(i);			
+		}
+		
+		// Queue (Front) 10 9 8 7 6 5 4 3 2 1 (Rear)
+		// Priority Queue sores the data for us
+		// Queue : (Front) 1 2 3 4 5 6 7 8 9 10 (Rear)
+		
+		System.out.println("Queue size is "+queue.size());
+		System.out.println("Head of Queue is "+queue.peek());  // Head of the Queue is : 1
+		queue.poll();	 // Removing the head 1
+		System.out.println("Queue size after Poll is "+queue.size());
+		System.out.println("Head of Queue is "+queue.peek());  // Head of the Queue is : 2		
+
+
+SET:	A set refers to a collection that cannot contain duplicate elements
+-------		
+
+Set types
+-----------
+1. Hash Set - Its a class creates a collection that use hash table for reference. It uses mechanism hashing to store the elements. Output will be unordered. It will not save in alphabetically or in ascending order
+2. Linked Hash Set - Its a class which is a hash table and the linked list implementation of the set interface. It maintains the insertion order same like Linked List
+3. Tree Set -It stores elements in ascending order. Output will be alphabetically sorted.
+	
+Eg:
+
+// Here data is not added as in index approach
+
+		HashSet<String> set = new HashSet<String>();
+		set.add("John");
+		set.add("Jim");
+		set.add("Hicks");
+		set.add("John");
+		set.add("Jim");
+		set.add("Joe");
+		
+		
+		// 1. Data is unique
+		// 2. Data is unordered due to hashing
+		System.out.println("set is "+set);
+		
+		Iterator<String> itr = set.iterator();
+		while(itr.hasNext()) {
+			String str = itr.next();
+			System.out.println(str);
+		}
+		System.out.println("========================");
+		TreeSet<String> set2 = new TreeSet<String>();
+		set2.add("John");
+		set2.add("Jim");
+		set2.add("Hicks");
+		set2.add("John");
+		set2.add("Jim");
+		set2.add("Joe");
+		
+		
+		// 1. Data is unique
+		// 2. Data is unordered but alphabetically sorted
+		System.out.println("set is "+set2);
+		
+		Iterator<String> iter = set2.iterator();
+		while(iter.hasNext()) {
+			String str = iter.next();
+			System.out.println(str);
+		}
+
+Output:
+set is [Joe, John, Hicks, Jim]
+Joe
+John
+Hicks
+Jim
+========================
+set is [Hicks, Jim, Joe, John]
+Hicks
+Jim
+Joe
+John
+		
+			
+MAPS:		Map will always store as key and pair format
+--------
+
+Examples for map:
+1. Error codes (200,"fatalError")
+2. Map of zip codes
+
+Methods available:
+-------------------
+1. put()
+2. putAll() --> USed to insert specificed map
+3. get(key)
+4. containsKey(key)---> Will return true or false
+5. remove(key)
+6. keySet() --> Returns the set view containing all the keys
+7. entrySet() --> Returns the set view containing all the key and value
+
+Types:
+-----------
+1. Hash Map
+2. Hash Table
+
+5.HASH MAP:			HashMap is a class implements map interface. It contains only unique elements. It maintains no order as it is stored by key and pair value
+-----------------
+
+Eg:
+
+HashMap<Integer, String>hm = new HashMap<Integer, String>();
+		
+		//To insert value
+		hm.put(1, "Selenium");
+		hm.put(2, "QTP");
+		hm.put(3, "TestComplete");
+		hm.put(4, "RFT");
+		
+		//Get value from specific key
+		System.out.println(hm.get(1));	// Output is Selenium
+		System.out.println(hm.get(4));	// Output is null
+	
+		//To print all values
+		for(Entry m : hm.entrySet()) {
+			System.out.println(m.getKey()+" "+m.getValue());
+		}
+		
+		//to remove
+		System.out.println("Before remove "+hm);
+		hm.remove(3);
+		System.out.println("After remove "+hm);		
+		
+		//To add object from other class
+		
+		HashMap<Integer, Employee>emp = new HashMap<Integer, Employee>();
+		Employee e1 = new Employee("Tom",25,"Admin");
+		Employee e2 = new Employee("Peter",28,"QA");
+		Employee e3 = new Employee("Jacob",30,"Sdet");
+		Employee e4 = new Employee("Steve",21,"Dev");
+		
+		emp.put(1,e1);
+		emp.put(2,e2);
+		emp.put(3,e3);
+		emp.put(4,e4);
+		
+		//traverse the hash map
+		for(Entry<Integer,Employee> m : emp.entrySet()) {
+			int key = m.getKey();
+			Employee e  = m.getValue();
+			System.out.println("Employee "+key+" Info:");
+			System.out.println(e.name+" "+e.age+" "+e.dept);
+		}
+
+
+6. HASH TABLE :  	It is similar to HashMap but Hash Table is synchronized. It maintains no order as it is stored by key and pair value.
+-----------------
+1. It stores Key as object. Each object will have a unique hash code. Each Hash code will have a value associated
+2. No Null key and null value
+3. Iterate all the values in the Hash table is called ENUMERATION
+
+
+
+Hashtable h1 = new Hashtable();
+		h1.put(1, "Tom");
+		h1.put(2, "Test");
+		h1.put(3, "Java");
+		
+		//create a clone copy or shallow copy
+		Hashtable h2 = new Hashtable();
+		h2 = (Hashtable)h1.clone();
+		
+		System.out.println("The values from h1 "+h1);
+		System.out.println("The values from h2 "+h2);
+		
+		h1.clear();
+		
+		System.out.println("The values from h1 "+h1);
+		System.out.println("The values from h2 "+h2);
+		
+		//contains
+		Hashtable st = new Hashtable();
+		st.put("A", "Vignesh");
+		st.put("B", "QA");
+		st.put("C", "Selenium");
+		
+		if(st.contains("Vignesh")) {
+			System.out.println("value is found");
+		}
+		
+		//print all values ---> Enumeration
+		Enumeration e = st.elements();
+		System.out.println("Values from st using Enumeration:");
+		while(e.hasMoreElements()) {
+			System.out.println(e.nextElement());
+		}
+		
+		//print all values ---> entrySet() -- set of hashtable values
+		System.out.println("Values from st using EntrySet:");
+		Set s = st.entrySet();
+		System.out.println(s);
+		
+		//Check both the hashtables are equal or not
+		
+		Hashtable st1 = new Hashtable();
+		st1.put("A", "Vignesh");
+		st1.put("B", "QA");
+		st1.put("C", "Selenium");
+		
+		if(st.equals(st1)) {
+			System.out.println("Both are equal");
+		}
+		
+		//get values from a key
+		System.out.println(st1.get("A"));
+		
+		//get the hashcode of the hash table object
+		System.out.println("Hash Code of st is "+st.hashCode());
+		System.out.println("Hash Code of st1 is "+st1.hashCode());
+		
+	}	

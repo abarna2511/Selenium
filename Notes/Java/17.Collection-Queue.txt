@@ -1,0 +1,40 @@
+QUEUE :		It follows FIFO(First in First Out) approach. Queue has 2 values. Front and rear
+----------
+
+PRIORITY QUEUE:	 It sorts the data for us
+------------------
+1. Peeking - Obtaining the head of the queue
+2. Polling - Remove the head of the queue
+
+Eg:
+
+public class PriorityQDemo {
+
+	public static void main(String[] args) {
+
+		PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
+		
+		for(int i = 1; i<=10; i++) { // To create a queue with 1 to 10
+			queue.add(i);
+		}
+		
+		System.out.println("Queue size is "+queue.size());
+		
+		for(Integer i : queue) {
+			System.out.println(i);
+		}
+		
+		
+		System.out.println("==================");
+		
+		System.out.println("Head of Queue is "+queue.peek());
+		
+		System.out.println("==================");
+		
+		queue.poll();
+		System.out.println("Head of Queue is "+queue.peek());
+}
+}
+
+NOTE : Similar to Array List, Queue also has add, addAll, remove, removeAll, retainAll methods		
+

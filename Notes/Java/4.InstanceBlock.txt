@@ -1,0 +1,125 @@
+INSTANCE BLOCK :
+1. Same as Constructor, Instance block also are used to write business logics where those logics are executed during object creation
+2. Instance block are used to initialize some values to the instance variable during object creation.
+
+Though constructor and instance block both look same, there are some difference 
+
+Syntax is
+
+{
+// logics here
+}
+
+Eg 1 : Difference between Instance block and constructor. 
+During object creation time, always instance blocks are executed first then only constructor will be executed
+
+class Test
+{
+	Test()
+	{
+	System.out.println("0-arg constructor");
+	}
+	{
+	System.out.println("instance block");
+	}
+	
+	public static void main(String[] args)
+	{
+		new Test(); // Output is instance block  0-arg constructor
+	}
+}
+
+Eg 2 : If there are 3 constructor and one instance block. 
+For all the 3 time object creation for constructor, instance block will be printed
+
+class Test
+{
+	Test()
+	{
+	System.out.println("0-arg constructor");
+	}
+	Test(int a)
+	{
+	System.out.println("1-arg constructor");
+	}
+	Test(int a,int b)
+	{
+	System.out.println("2-arg constructor");
+	}
+	{
+	System.out.println("instance block");
+	}
+	
+	public static void main(String[] args)
+	{
+		new Test(); // Output is instance block  0-arg constructor
+		new Test(10); // Output is instance block  1-arg constructor
+		new Test(10,20); // Output is instance block  2-arg constructor
+	}
+}
+
+Eg 3 : Inside class, multiple instance blocks are possible. But the execution order is top to bottom
+
+class Test
+{
+	Test()
+	{
+	System.out.println("0-arg constructor");
+	}
+	Test(int a)
+	{
+	System.out.println("1-arg constructor");
+	}
+	{
+	System.out.println("instance block 1");
+	}
+	{
+	System.out.println("instance block 2");
+	}
+	
+	public static void main(String[] args)
+	{
+		new Test(); // Output is instance block 1  instance block 2  0-arg constructor
+		new Test(10); // Output is instance block 1  instance block 2  1-arg constructor
+	}
+}
+
+Eg 4 : Instance block with constructor calling. Instance block depends on number of object creation and not number of constructor
+
+class Test
+{
+	Test()
+	{
+	this(10);
+	System.out.println("0-arg constructor");
+	}
+	Test(int a)
+	{
+	System.out.println("1-arg constructor");
+	}
+	{
+	System.out.println("instance block 1");
+	}
+	public static void main(String[] args)
+	{
+		new Test(); // Output is instance block 1  1-arg constructor 0-arg constructor
+	}
+}
+ 
+Eg 5 : Initialize variable
+
+class Emp
+{
+	int eid;
+	{
+	eid=111;
+	}
+	void disp()
+	{
+	System.out.println("employee id"+eid);
+	}
+	public static void main(String[] args)
+	{
+		new Emp().disp();
+	}
+}

@@ -1,0 +1,43 @@
+/////AUTOMATION TESTING:
+----------------------
+Automation testing is a technique uses an application to implement entire life cycle of the software in less time and provides efficiency and effectiveness to the testing software.
+
+Why to use Automation testing?
+-------------------------------
+1) Automation testing Saves Time and Money
+2) Testing Increases Correctness
+3) Automate the test due to version changes
+4) Increase Test Coverage
+5) Increases Speed, Efficiency,  Quality and Decreases the Cost
+6) Testers get Motivated which increases the efficiency
+7) Helpful in testing complex web application
+
+Is automation the final solution
+--------------------------------- 
+Future is with automation only.
+
+Selenium Introduction - What is Selenium and Why Selenium? 
+--------------------------------------------------------------
+Selenium is a free (open source) automated testing suite for web applications across different browsers and platforms. It is quite similar to HP Quick Test Pro (QTP now UFT) only that Selenium focuses on automating web-based applications. Testing done using Selenium tool is usually referred as Selenium Testing.
+
+Selenium is not just a single tool but a suite of software's, each catering to different testing needs of an organization. It has four components.
+
+Selenium Integrated Development Environment (IDE)
+Selenium Remote Control (RC)
+WebDriver
+Selenium Grid
+
+Advantages of Selenium:
+------------------------
+1. Selenium has no upfront, out-of-pocket costs. It is a free download and support is free too, although it is community-based.
+2. Selenium tests are, in principle, able to run under multiple browsers.
+3. Although Selenium has its own script language, you are not limited to writing in that language since it can work with C#, Java, JavaScript, PHP, Python and others.
+4. Selenium scripts are created by recording actions using the web application under test running in a browser. These scripts can be saved and re-run at any time. Selenium tests can be created manually through the use of web development tools such as Firebug also.
+5. It also supports web applications that implement part of their functionality within the browser using JavaScript and AJAX technologies.
+
+Why Java for Selenium:
+-----------------------
+Selenium itself is build with java
+
+
+

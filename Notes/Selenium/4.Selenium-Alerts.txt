@@ -1,0 +1,32 @@
+ALERTS:
+---------
+
+1st approach :
+Alert alt=driver.switchTo().alert();
+alt.accept();
+
+2nd approach :
+driver.switchTo().alert.accept();
+
+
+2 Methods:
+----------
+1. accept()
+2. dismiss()
+
+
+Handle Window Upload popups:
+----------------------------
+If there is a website where clicking on Browse and it will ask to upload a file
+But selenium cannot Handle Window Upload popups.
+
+So instead of clicking that "Browse" button have to use the "sendKeys" method and mention the path of the file to be uploaded
+
+Example
+--------
+System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+WebDriver driver =new ChromeDriver();
+driver.get("https://html.com/input-type-file/");
+driver.findElement(By.name("fileupload")).sendKeys("F:\\Java-Selenium-FITA-Training-Materials\\Notes\\Selenium\\2.Selenium-Locators.txt");
+Thread.sleep(5000);
+driver.quit();

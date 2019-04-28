@@ -1,0 +1,116 @@
+SELENIUM BASICS :
+----------------------------------------
+
+
+
+
+Xpath :
+----------
+1. Syntax for single attribute - //tagname[@attribute='value']
+2. Syntax for multiple attribute - //tagname[@attribute1='value1'][@attribute2='va lue2']
+3. Can use 'AND' 'OR' for multiple attribute - //tagname[@attribute1='value1'AND @attribute2='value2'] --- //tagname[@attribute1='value1' OR @attribute2='value2']
+4. Syntax for contains - //tagname[contains(@attribute='value')]
+5. Syntax for text - [text()='value']
+6. Syntax for following - Xpath1//following::Xpath2
+7. Syntax for Starts-with - //tagname[starts-with(@attribute='value')]
+
+CSS:
+------
+1. CSS is faster than Xpath
+2. CSS will not change with browser
+3. Should not use // or @ as using in Xpath
+
+Attribute					Symbol
+--------------------------------------------
+id							#
+Class name					.
+attribute					tagname[attribute='value']
+multiple attribute			tagname[attribute1='value1'][attribute2='value2']
+contains					*
+starts-with					^
+Ends-with					$
+
+
+Eg - To find an id='user_login' in an input tag use - input#user_login
+	 To find an class='user_login' in an input tag use - input.user_login
+	 
+
+IMPLICIT WAIT:	 	driver.manage.timeouts().implicitlyWait(30,TimeUnit.seconds)
+-----------------
+	 
+	 
+EXPLICIT WAIT:	 Have to use WebDriverWait class
+-----------------
+
+Eg - 
+WebDriverWait wait=new WebDriverWait(driver,30); ---> Where 30 is number of seconds to wait
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.Xpath("")));
+
+FLUENT WAIT:		It is a plain class using which we can wait until specific conditions are met
+-----------------
+1. Default time for wait is 250 milli seconds
+2. Syntax is present in source code itself
+
+
+DROPDOWN:		Select class need to be used for dropdown. It has 3 methods. selectByIndex, selectByValue and selectByVisibleText
+----------------
+
+Eg - 
+WebElement month_dropdown=driver.findElement(By.id("Month"));
+Select month_dd=new Select(month_dropdown);
+month_dd.selectByIndex(1);
+month_dd.selectByValue("1");
+month_dd.("Jan");
+
+WEBTABLE : 
+-------------------
+
+Th- Table heading
+Td - Table data
+Tr - Table row
+
+ALERT:
+---------
+1st approach :
+Alert alt=driver.switchTo().alert();
+alt.accept();
+
+2nd approach :
+driver.switchTo().alert.accept();
+
+FRAMES:
+---------
+Different ways to switch to frames are :
+1. Using name or id
+2. Using index
+3. Using Web Element
+
+driver.switchTo().defaultContent(); ---> Used to come out of frame. i.e will come to main parent
+
+
+CAPTURE SCREENSHOT:		We have predefined interface called as "TakesScreenshot"
+-----------------------
+
+Code to be saved in Utility package is
+
+public static void captureScreenshot(WebDriver driver,String screenshotName)
+{
+TakesScreenshot ts=(TakesScreenshot)driver;
+File source=ts.getScreenshotAs(Output.FILE);
+FileUtils.copyFile(source,new File("./Screenshots/"+screenshotName+".png"));
+}
+
+CAPTURE SCREENSHOT for FAILED TEST CASE:	Have to use ITestResult and @AfterMethod
+-------------------------------------------
+
+1. ITestResult - It is an interface which will keep all the info abt the TC got executed
+
+@AfterMethod
+public void tearDown(ITestResult result)
+{
+if(ITestResult.FAILURE==result.getStatus())
+{
+Utility.captureScreenshot(driver,result.getName());
+}
+driver.quit();
+}

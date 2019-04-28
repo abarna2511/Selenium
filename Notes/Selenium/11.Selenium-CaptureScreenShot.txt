@@ -1,0 +1,73 @@
+Capture ScreenShot:
+-----------------------
+
+We have to use interface called TakesScreenshot.
+
+There are 2 ways to acheive this
+
+1. Normal way :			NOT THE BEST WAY
+----------------
+In this way we have to create object for TakesScreenshot and have to use File concept in each class wherever screenshot needed
+
+Eg:
+
+package capturescreenshot;
+
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class FacebookScreenshot {
+	
+	WebDriver driver;
+	@Test
+	public void openFacebook() throws Exception {
+		System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+		driver =new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://facebook.com");
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("emailid");
+		
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(src, new File("./Screenshots/facebook.png"));
+		System.out.println("ScreenShot Taken");
+		driver.quit();
+	}
+}
+
+
+2. Best way :
+-------------
+
+1. Create a seperate package as library
+2. Create a class as Utility and paste the following code
+
+package library;
+
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+public class Utility {
+	
+	public static void captureScreenShot(WebDriver driver, String ImageName) {
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(src, new File("./Screenshots/"+ImageName+".png"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Exception while taking screenshot is "+e.getMessage());
+		}
+	}
+}
+
+3. In the program wherever screenshot needed to be taken use Utility.captureScreenShot(driver, "NameOfImage");

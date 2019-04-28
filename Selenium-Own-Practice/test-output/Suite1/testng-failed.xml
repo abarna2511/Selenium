@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite1]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="TestNg All Test(failed)">
+    <parameter name="password" value="testpassword"/>
+    <parameter name="browser" value="http://facebook.com"/>
+    <parameter name="emailId" value="test123@gmail.com"/>
+    <parameter name="url" value="http://facebook.com"/>
+    <classes>
+      <class name="testng.ParemetersDemo">
+        <methods>
+          <include name="setup" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- testng.ParemetersDemo -->
+    </classes>
+  </test> <!-- TestNg All Test(failed) -->
+</suite> <!-- Failed suite [Suite1] -->

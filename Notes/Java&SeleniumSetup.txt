@@ -1,0 +1,42 @@
+JDK:
+------
+1. Google type java jdk and open the oracle link
+2. Click on JDK and it routes to the Download page
+3. Download the needed version
+
+Set Environment variables:
+------------------------------
+1. Open my computer --> Right click and select properties
+2. click on Advance system settings---> Environment variables
+3. Click on bath from the 2nd panel and click on edit
+4. enter the java installed bin folder - C:\Program Files\Java\jdk-11.0.2\bin
+
+
+Eclipse installation:
+----------------------
+1. Go to https://www.eclipse.org/downloads/packages/release
+2. click on Photon --> R packages --> Click on Eclipse IDE for Java EE Developers
+3. Download and unzip the folder and install
+
+
+
+Selenium Setup:
+-----------------
+
+Installing Webdriver:
+------------------------
+1. Go to browser and hit https://www.seleniumhq.org/download/
+2. Download the Selenium webdriver for Java 
+3. UnZip the folder
+4. Open eclipse
+5. create a new java project
+6. right click on the project and click on properties
+7. click on Java Build path and then click on libraries tab
+8. click on class path
+8. click on add external jars and add the jar zip folder which got downloaded
+
+Installing drivers:
+------------------------
+1. Install chrome driver from - https://chromedriver.storage.googleapis.com/index.html?path=73.0.3683.20/
+2. Install firefox driver from - https://github.com/mozilla/geckodriver/releases
+3. Once downloaded and unzip. save both in a folder called drivers

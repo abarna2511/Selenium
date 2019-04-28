@@ -1,0 +1,204 @@
+LIST TYPES:
+------------
+1. Array List
+2. Linked List
+3. Vector
+
+
+1. ARRAY LIST:	It is an implementation of the list interface where the elements can be dynamically added or removed from the list
+-------------- 
+
+Properties of ArrayList
+ 1. Can contain duplicate values
+ 2. Maintains insertions ordering
+ 3. It is not synchronized(Not thread safe)
+ 4. Allows random access to fetch the element because it stores the values on basis of indexes
+
+
+Generic Vs Non-Generic:  Before JDK 1.5 there is no generics
+-------------------------
+
+ArrayList ar = new ArrayList(); ---> this is a non generic. Bcz we can save array list with any data type such as int, float, string etc
+
+ArrayList<Integer> ar = new ArrayList<Integer>(); ---> This is generic. As this array list will accept only Integer values
+
+
+Eg 1: Two Array List created and printed in console using for loop, for each and Iterator
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ArrayList2Demo {
+
+	public static void main(String[] args) {
+		ArrayList<String> a1 = new ArrayList<String>();
+		a1.add("Tom");
+		a1.add("Kate");
+		
+		ArrayList<Integer> a2 = new ArrayList<Integer>();
+		a2.add(10);
+		a2.add(20);
+		
+		for(int i = 0;i<a1.size();i++) {
+			System.out.println(a1.get(i));
+		}
+		
+		System.out.println("===============");
+		
+		for(Integer j : a2) {
+			System.out.println(j);
+		}
+		
+		System.out.println("===============");
+		
+		Iterator<String> it = a1.iterator();
+		while(it.hasNext()) {
+			String s = it.next();
+			System.out.println(s);
+		}
+	
+	}
+}
+
+
+Eg 2: We can use addAll() method to add two array list ===> Note addAll method will add Array List of same data type.
+
+import java.util.ArrayList;
+public class ArrayList2Demo {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> a1 = new ArrayList<Integer>();
+		a1.add(1);
+		a1.add(2);
+		
+		ArrayList<Integer> a2 = new ArrayList<Integer>();
+		a2.add(3);
+		a2.add(4);
+		
+		a1.addAll(a2);
+		
+		for(Integer i : a1) {
+			System.out.println(i);
+		}
+	}
+}
+Output:
+1
+2
+3
+4
+
+4. Similar to addall, there is one more method called removeAll() to remove the added array list using addAll()
+
+5. retainAll ---> This method is used to retain the common value between 2 array list.
+
+Eg 3 :
+
+import java.util.ArrayList;
+public class ArrayList2Demo {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> a1 = new ArrayList<Integer>();
+		a1.add(1);
+		a1.add(2);
+		
+		ArrayList<Integer> a2 = new ArrayList<Integer>();
+		a2.add(1);
+		a2.add(4);
+
+		a1.retainAll(a2);
+		
+		for(Integer i : a1) {
+			System.out.println(i);
+		}
+		
+		System.out.println("=============");
+		
+		for(Integer j : a2) {
+			System.out.println(j);
+		}
+	}
+}
+
+Output:
+
+1
+=============
+1
+4
+
+6. Using set method we can edit any value in the array list. It needs index and the value need to be changed
+
+7. contains method is used to search in array list
+Eg:
+ArrayList<String> list1 = new ArrayList<String>();
+list1.add("John")
+list1.add("Jim")
+if(list1.contains("John"))
+{
+System.out.println("John is present in the list");
+}
+
+
+
+2. LINKED LIST:	It is a dynamic array which stores data based on 2 things --> Actual data and reference data
+-------------- 
+ 
+LinkedList<String> ll = new LinkedList<String>();
+		ll.add("test");
+		ll.add("selenium");
+		ll.add("java");
+	
+System.out.println("Content of Linked list"+ll);  ---> Output is Content of Linked list[test, selenium, java]
+
+1. addFirst() --> It adds the value as first of the list
+2. addLast() --> It adds the value as last of the list
+3. set() method --> Used to edit the value in specifid index --> if index 0 has value as "test" if we use ll.set(0, "Dev") then index 0 will be changed from test to dev
+4. removeFirst() --> It removes the first value of the list
+5. removeFirstLast() --> It removes the last value of the list
+6. remove(Index)() ---> It removes the value in the specific index
+7. To print all the values we can use --> for loop, advance for loop, iterator and while loop
+
+Eg 1 : With all the methods discussed in above step
+
+import java.util.LinkedList;
+
+public class LinkedListDemo {
+	public static void main(String[] args) {
+		LinkedList<Integer> ll = new LinkedList<Integer>();
+		ll.add(1);
+		ll.add(2);
+		ll.add(3);
+		ll.add(4);
+		System.out.println("Contents in Linked list is "+ll);
+		
+		ll.addFirst(0);
+		ll.addLast(5);
+		System.out.println("Contents in Linked list is "+ll);
+		
+		ll.set(1, 11);
+		ll.set(2, 22);
+		System.out.println("Contents in Linked list is "+ll);
+		
+		ll.removeFirst();
+		ll.removeLast();
+		System.out.println("Contents in Linked list is "+ll);
+		
+		ll.remove(0);
+		System.out.println("Contents in Linked list is "+ll);
+	}
+}
+
+Output:
+
+Contents in Linked list is [1, 2, 3, 4]
+Contents in Linked list is [0, 1, 2, 3, 4, 5]
+Contents in Linked list is [0, 11, 22, 3, 4, 5]
+Contents in Linked list is [11, 22, 3, 4]
+Contents in Linked list is [22, 3, 4]
+
+3. VECTOR:
+------------------
+
+Vector are similar to arrays where the elements of the vector object can be accessed via an index to the vector
+Vector implements a dynamic array and is not limited to a specific size and is synchronized

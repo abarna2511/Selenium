@@ -1,0 +1,147 @@
+STATIC BLOCK : Used to write logics where it is executed during .class file loading
+
+Syntax is
+
+static{
+// logics here
+}
+
+Eg 1 : Always Static blocks will be executed first compare to instance blocks.
+But static blocks will be executed only one time. But instance blocks will be executed depends on number of object created
+
+class Test
+{
+	{
+	System.out.println("instance block-1");
+	}
+	{
+	System.out.println("instance block-2");
+	}
+	static{
+	System.out.println("static block-1");
+	}
+	static{
+	System.out.println("static block-2");
+	}
+	Test()
+	{
+	System.out.println("0-arg constructor");
+	}
+	Test(int a)
+	{
+	System.out.println("1-arg constructor");
+	}
+	public static void main(String[] args)
+	{
+		new Test();
+		new Test(10);
+}
+
+Output is :
+static block-1
+static block-2
+instance block-1
+instance block-2
+0-arg constructor
+instance block-1
+instance block-2
+1-arg constructor
+
+Eg 2 : There are 3 Classes. Where only A class has main method. And B and C does not have main method.
+To execute static blocks in B & C, use forname in A class
+
+class A
+{
+static {
+System.out.println("static block-A")
+}
+public static void main(String[] args) throws ClassNotFoundException
+	{
+	Class.forname("B"); // where forname present in class called "Class" which need to be added as prefix
+	Class.forname("C");
+	}
+}
+ 
+class B
+{
+static {
+System.out.println("static block-B")
+}
+}
+
+class C
+{
+static {
+System.out.println("static block-C")
+}
+}
+
+Output is :
+static block-A
+static block-B
+static block-C
+
+Eg 3 : Initialize variable
+
+class Emp
+{
+	static int eid;
+	
+	static{
+	eid=111;
+	}
+	static void disp()
+	{
+	System.out.println(Emp.eid);
+	}
+	public static void main(String[] args)
+	{
+		Emp.disp(); // no need to create object as static block will be executed based on .class file execution
+	}
+}
+
+Eg 4 : Combination of all Variables, Methods, Constructors, Instance & Static Blocks
+
+class Test
+{
+	int a=10; // instance variable
+	static int b=20; // static variable
+	void m1(int a)
+	{
+	System.out.println("instance method");
+	}
+	static void m2(String str)
+	{
+	System.out.println("static method");
+	}
+	Test()
+	{
+	System.out.println("0-arg constructor");
+	}
+	Test(int a)
+	{
+	System.out.println("1-arg constructor");
+	}
+	{
+	System.out.println("instance block");
+	}
+	static{
+	System.out.println("static block");'
+	}
+	public static void main(String[] args)
+	{
+	Test t=new Test();
+	Test t1=new Test(10);
+	t.m1(10);
+	Test.m2("vignesh");
+	}
+}
+
+Output is :
+static block
+instance block
+0-arg constructor
+instance block
+1-arg constructor
+instance method
+static method

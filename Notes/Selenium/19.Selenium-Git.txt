@@ -1,0 +1,77 @@
+GIT:
+-----
+Its a Version Control System(VCS) for tracking changes in computer files
+
+Advantages of Git:
+--------------------
+- Distributed version control
+- Coordinates work between multiple people
+- Can track who made what changes and when 
+- Revert back at any time
+- Local and remote repos
+
+
+INSTALLATION:
+---------------
+1. Go to https://git-scm.com/downloads and download git for corresponding OS
+2. Install the downloaded exe file
+
+
+BASIC COMMANDS:
+---------------
+
+git init 	----> Initialize local repository
+git add<file> ----> Add File(s) to index
+git status ----> Check status of working tree
+git commit ----> Commit changes in index
+git push -----> Push to remote repository
+git pull -----> Pull from to remote repository
+git clone -----> Clone repository in to a new Directory
+
+
+Create Project and commit the changes:
+---------------------------------------
+1. In desktop create a new folder "myApp" and create 2 files in it as "index.html" and "app.js"
+2. Right click on that folder ---> click on Git Bash Here
+3. To initialise git in that project by typing ---> git init
+4. Config the Username by typing ---> git config --global user.name '<Username>'
+5. Config the Email by typing ---> git config --global user.email '<EmailAddress>'
+6. To add file ---> git add index.html
+7. To check whether it got added ----> git status
+8. To remove the file from added ----> git rm --cached index.html
+9. To add all the files ---> git add .
+10. Change the content in the index.html
+11. If any file changes ---> git status ---> Will display the changed file name in red colour --- > Those also need to be added
+12. To commit the changes ---> git commit -m '<Message>'
+Note: Its always very mandatory to give commit message
+
+
+Branch:		By default it will be in the master branch
+---------
+1. To create a branch --> git branch <branchName>
+2. To switch to that branch ---> git checkout <branchName>
+3. Once all the branch work is done and committed, switch back to master ---> git checkout master
+4. To merge the branch to the master, be in the master branch ---> git merge <branchName> -m '<Message>'
+
+
+TO PUSH THE LOCAL REPO TO GITHUB:
+-----------------------------------
+1. Go to https://github.com/ and login
+2. From left pane click on New
+3. Enter the repository name and description and click on create repository
+4. Copy the git remote add command mention in the github page
+5. Go to git bash and the project with the master branch paste the copied git remote add command, Eg ---> git remote add origin https://github.com/vignesh1810/GitLearning.git
+6. To push ---> git push -u origin master
+7. It will prompt for Username and password ---> Once given it will push the code to the Github repos
+8. Refresh the Github page to see the code
+
+
+TO CLONE THE LOCAL REPO TO GITHUB:
+-----------------------------------
+1. Get the .git url of the file need to be cloned or downloaded 
+2. Open Git bash ---> git clone https://github.com/vignesh1810/GitLearning.git
+
+
+TO PULL THE Latest changes:
+-----------------------------------
+1. Once cloned and after that if there is any change in code from git hub ---> git pull

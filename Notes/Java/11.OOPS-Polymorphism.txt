@@ -1,0 +1,180 @@
+POLYMORPHISM : The ability to appear more than one form is called polymorphism
+---------------
+2 types polymorphism :
+
+1. Compile type / static binding / early binding :  Method overloading
+----------------------------------------------------
+There are 3 types of overloading :
+					1. Method overloading
+					2. Constructor overloading
+					3. Operator overloading
+
+Method overloading : In a class if there are 2 methods with same name but with different number of arguments or same number of arguments with different data types
+-------------------
+void m1(int a){}
+void m1(int a,int b){} 
+
+void m1(int a){}
+void m1(char b){}
+
+
+Rules for Over Loading:
+-------------------------
+1. Overloaded methods must have different argument list
+2. It can have different return type if argument list is different
+3. It can throw different exceptions
+4. It can have different access modifiers
+
+
+
+Eg 1 : Base example for Method overloading
+
+class Test
+{
+void m1(int a)
+{System.out.println("int m1 method");
+}
+void m1(int a, int b)
+{System.out.println("int,int m1 method");
+}
+void m1(char ch)
+{System.out.println("char m1 method");
+}
+
+public static void main(Static[] args)
+{
+Test t=new Test();
+t.m1(10);
+t.m1(10,20);
+t.m1('a');
+}
+}
+
+Constructor overloading : In a class if there are 2 constructor with same name but with different number of arguments or same number of arguments with different data types
+-------------------
+
+Eg 2 : Base example for Constructor overloading
+
+class Test
+{
+Test(int a)
+{System.out.println("int arg constructor");
+}
+Test(int a, int b)
+{System.out.println("int,int arg constructor");
+}
+Test(char ch)
+{System.out.println("char arg constructor");
+}
+public static void main(Static[] args)
+{
+new Test(10);
+new Test(10,20);
+new Test('a');
+}
+}
+
+Operator overloading : Only 1 overloading operator is "+"
+-------------------
+Eg 3 :
+
+class Test
+{
+Test()
+{System.out.println(10+20);
+ System.out.println("viki+super");
+}
+
+public static void main(Static[] args)
+{
+new Test(); // Output is 30--vikisuper
+}
+}
+
+
+2. Run time type / dynamic binding / late binding : 
+----------------------------------------------------
+					
+Method overriding :  There are 8 rules 
+-------------------
+
+Rule 1 : The list and type of argument should be exactly the same as that of the overridden method
+Rule 2 : The return type should be same or a sub type of the return type declared in the original overridden method in the super class
+Rule 3 : The access modifier of the overriding method cannot be more restrictive than the overriddens method access level
+Eg: If overridden method has access level has public then overriding method cannot be private or protected
+Rule 4 : A method declared as final, static or private cannot be overridden
+Rule 5 : A method declared as static cannot be overridden but can be redeclared
+Rule 6 : An overriding method can throw any uncheck exceptions regardless of whatever the overridden method throws exception or not
+However the overriding should not throw checked exceptions that are new or broader than the one declared by the overridden method
+Rule 7 : Constructor cannot be overridden
+
+
+Eg 4 : 
+
+class Parent
+{
+void show() // overridden method
+{System.out.println("Parent Method");
+}
+}
+
+class Child extends Parent
+{
+void show() // overriding method
+{System.out.println("Child Method");
+}
+
+public static void main (String[] args)
+{
+new Child().show(); // output is Child Method
+}
+}
+
+
+Eg 5 : Usage of Type casting
+
+Interface WebDriver
+{
+ void get();
+ void window();
+}
+
+class FirefoxDriver implements WebDriver
+{
+ void get(); // overriding
+ void window(); // overriding
+ void x();
+ void y();
+ 
+ WebDriver driver=new FirefoxDriver();
+ driver.get(); // compile time check get method in webdriver class and in runtime it run as per declared in firefox driver
+ driver.window();
+ //driver.x(); --> This throws compliation error. bcz in compile time it check x method in WebDriver class. It wont be available
+ FirefoxDriver f = (FirefoxDriver) driver ; // This is called type casting. Where converting the driver object reference to FirefoxDriver class
+ f.x();
+ f.y();
+}
+
+Eg 7 : This is called method hiding concept
+
+
+class Parent
+{
+static void m1() // overridden method
+{System.out.println("parent m1");
+}
+}
+
+class Child extends Parent
+{
+static void m1() // overriding method
+{System.out.println("child m1");
+}
+
+public static void main (String[] args)
+{
+Parent p=new Child();
+p.m1(); // Output is parent m1. bcz m1 is a static method. Always static is related to class. As the reference variable is associated with class Parent it print "parent m1"
+}
+}
+

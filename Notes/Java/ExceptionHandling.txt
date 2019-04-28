@@ -1,0 +1,112 @@
+EXCEPTION HANDLING:
+------------------------
+
+1. What is EXCEPTION HANDLING ?
+----------------------------------
+
+An Exception is an event that disrupts the normal flow of the program.
+Exception handling is a mechanism to handle runtime error such as ClassNotFound, IO, SQL, remote etc
+
+2. Error Vs Exception:
+------------------------
+				Error													Exception
+1. Impossible to recover from an error 							Possible to recover from an error
+2. Errors are of unchecked type									It can be of checked or unchecked
+3. Happens at run time											Can happen on both compile & runtime
+4. Caused by the environment on which application				Caused by Application
+is running
+
+3. Exception Hierarchy:
+-----------------------
+*********************************Please refer dig******************************
+
+4. Checked Vs UnChecked Exception:
+-------------------------------------
+
+				Checked													UnChecked
+1. At compilation time 												At Run time
+2. Cannot be ignored during compilation								Can be ignored during compilation
+
+5. Exception Examples:
+---------------------------
+Syntax:
+
+public class exceptionHandlingDemo {
+	
+	public static void main(String[] args) {
+		
+		try {
+			//code may raise the exception
+			
+		} catch (Exception e) {
+			//rest of the code
+		}
+	}
+}
+
+Eg:
+package exceptionHandling;
+
+public class exceptionHandlingDemo {
+	
+	public static void main(String[] args) {
+		
+		try {
+			String str = null;
+			System.out.println(str.length());
+		} catch (NullPointerException e) {
+			System.out.println("Cannot determine length of a null");
+		}
+	}
+}
+
+6. Types of Exception:
+---------------------------
+
+Build in Exceptions:
+--------------------
+1. ArithmeticException
+2. ArrayIndexOutOfBoundException
+3. ClassNotFoundException
+4. IOException
+5. InterupptedException
+6. NoSuchFieldException
+7. NoSuchMethodException
+8. NumberFormatException
+9. RunTimeException
+10. StringIndexOutOfBoundsException
+
+User Defined Exceptions:
+---------------------------
+
+
+
+7. Exception Methods:
+----------------------
+1. try catch
+2. finaly
+3. throw
+4. throws
+
+8. Throw Vs Throws:
+---------------------
+
+				Throw													Throws
+1. Used to explicitly throw an exception 							Used to declare an exception
+2. Checked exception cannot be propagated using throw only			Checked exception can be propagated
+3. Followed by instance												Followed by class
+4. Used within a method												Used with a method signature
+5. Cannot throw multiple exceptions									Can throw multiple exceptions
+
+
+
+9. Final Vs Finally Vs Finalize:
+---------------------------------
+
+		Final									Finally										Finalize
+1. 	Keyword									Block										Method
+2. Applies restriction on class,			Used to place an important code				Used to perform clean up processing just before the object is garbage collected
+methods and variabled
+3. final class cant be extended,			It will be executed whether the exception
+method cant be overridde and the 			is handled or not
+variable value cant be changed

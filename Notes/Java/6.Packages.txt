@@ -1,0 +1,20 @@
+PACKAGES:
+----------
+Packages are group of related classes.
+Classes inside the packages can access each others package-access members
+
+Why packages??
+---------------
+1. Programmers can easily determine that these classes are related
+2. Programmers know where to find files of similar types
+3. The names wont conflict
+4. You can have define access of the types within the package
+
+Naming convention:
+-------------------
+1. Only lower cases for all letters
+2. company uses reverse domain name as package name --> Domain name - google.com -- Packages are com.google.homepage or com.google.loginpage
+
+To import a specifed class from package in a class use packageName.className
+To import all the classes of a package in a class use packageName.*
+

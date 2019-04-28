@@ -1,0 +1,128 @@
+SET:	A set refers to a collection that cannot contain duplicate elements
+-------		
+
+Set types
+-----------
+1. Hash Set - Its a class creates a collection that use hash table for reference. It uses mechanism hashing to store the elements. Output will be unordered. It will not save in alphabetically or in ascending order
+2. Linked Hash Set - Its a class which is a hash table and the linked list implementation of the set interface. It maintains the insertion order same like Linked List
+3. Tree Set -It stores elements in ascending order. Output will be alphabetically sorted.
+	
+	
+Eg 1 : With all HashSet, Linked HashSet and TreeSet saved with Integers
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
+public class HashSetDemo {
+
+	public static void main(String[] args) {
+		HashSet<Integer> hashset = new HashSet<Integer>();
+		hashset.add(101);
+		hashset.add(102);
+		hashset.add(104);
+		hashset.add(103);
+		hashset.add(501);
+		hashset.add(102);
+
+		Iterator<Integer> itr = hashset.iterator();
+		while(itr.hasNext()) {
+			Integer i = itr.next();
+			System.out.println(i);
+		}
+		
+	System.out.println("=============================");
+		
+		LinkedHashSet<Integer> linkedset = new LinkedHashSet<Integer>();
+		linkedset.add(501);
+		linkedset.add(101);
+		linkedset.add(501);
+		linkedset.add(102);
+		linkedset.add(104);
+		linkedset.add(501);
+		linkedset.add(103);	
+		linkedset.add(505);
+		linkedset.add(102);
+		
+		Iterator<Integer> itr2 = linkedset.iterator();
+		while(itr2.hasNext()) {
+			Integer i = itr2.next();
+			System.out.println(i);
+		}
+		
+		System.out.println("=============================");
+
+		TreeSet<Integer> treeset = new TreeSet<Integer>();
+		treeset.add(101);
+		treeset.add(501);
+		treeset.add(102);
+		treeset.add(104);
+		treeset.add(103);	
+		treeset.add(505);
+		treeset.add(102);
+
+		Iterator<Integer> itr1 = treeset.iterator();
+		while(itr1.hasNext()) {
+			Integer i = itr1.next();
+			System.out.println(i);
+		}
+	}
+}
+
+Eg 2 : With all HashSet, Linked HashSet and TreeSet saved with String
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
+
+public class HashSetDemo2 {
+	public static void main(String[] args) {
+
+		HashSet<String> hashset = new HashSet<String>();
+		hashset.add("Yyy");
+		hashset.add("Bbb");
+		hashset.add("Ddd");
+		hashset.add("Xxx");
+		hashset.add("Zzz");	
+		hashset.add("Ddd");
+				
+		Iterator<String> itr = hashset.iterator();
+		while(itr.hasNext()) {
+			String i = itr.next();
+			System.out.println(i);
+		}
+		
+		System.out.println("=============================");
+		
+		LinkedHashSet<String> linkedset = new LinkedHashSet<String>();
+		linkedset.add("Yyy");
+		linkedset.add("Bbb");
+		linkedset.add("Ddd");
+		linkedset.add("Xxx");
+		linkedset.add("Zzz");	
+		linkedset.add("Ddd");
+		
+		Iterator<String> itr2 = linkedset.iterator();
+		while(itr2.hasNext()) {
+			String i = itr2.next();
+			System.out.println(i);
+		}
+		
+		System.out.println("=============================");
+		
+		TreeSet<String> treeset = new TreeSet<String>();
+		treeset.add("Yyy");
+		treeset.add("Bbb");
+		treeset.add("Ddd");
+		treeset.add("Xxx");
+		treeset.add("Zzz");	
+		treeset.add("Ddd");
+		
+		Iterator<String> itr1 = treeset.iterator();
+		while(itr1.hasNext()) {
+			String i = itr1.next();
+			System.out.println(i);
+		}
+	}
+}

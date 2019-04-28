@@ -1,0 +1,42 @@
+Locators:
+----------
+There are 7 locators
+
+1. ID
+2. Class
+3. Name
+4. Xpath
+5. CSS
+6. Link Text
+7. Partial Link text
+
+
+Xpath :
+----------
+1. Syntax for single attribute - //tagname[@attribute='value']
+2. Syntax for multiple attribute - //tagname[@attribute1='value1'][@attribute2='va lue2']
+3. Can use 'AND' 'OR' for multiple attribute - //tagname[@attribute1='value1'AND @attribute2='value2'] --- //tagname[@attribute1='value1' OR @attribute2='value2']
+4. Syntax for contains - //tagname[contains(@attribute='value')]
+5. Syntax for text - [text()='value']
+6. Syntax for following - Xpath1//following::Xpath2
+7. Syntax for Starts-with - //tagname[starts-with(@attribute='value')]
+
+CSS:
+------
+1. CSS is faster than Xpath
+2. CSS will not change with browser
+3. Should not use // or @ as using in Xpath
+
+Attribute					Symbol
+--------------------------------------------
+id							#
+Class						.
+attribute					tagname[attribute='value']
+multiple attribute			tagname[attribute1='value1'][attribute2='value2']
+contains					*
+starts-with					^
+Ends-with					$
+
+
+Eg - To find an id='user_login' in an input tag use - input#user_login
+	 To find an class='user_login' in an input tag use - input.user_login

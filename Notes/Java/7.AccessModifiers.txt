@@ -1,0 +1,181 @@
+Access Modifiers:
+---------------------
+
+ACCESS MODIFIERS:
+-------------------
+Access modifier specifies the scope/accessibility of a variable or a method or a class from the same class or from a different class or from a different package
+
+Uses:
+--------
+Data abstraction/hiding is one of the concept of OOPS. This means client will not know the implementation details
+Eg: If an attribute is made private then it can be accessed only in the class which defined it
+
+1.Public :
+--------------
+When an attribute(variable/method) is declared as public, then it can be accessed from anywhere, any class from any package.
+
+2. Protected:
+---------------
+When an attribute(variable/method) is declared as protected, then it is visible to all the classes in the same package and all the subclasses(if a class is extending) in same or different package. And not for non extended class in diff package
+
+3. Default:
+-------------
+When no access modifier is specifed, then it is called as default modifier. When an attribute(variable/method) has default modifier it can be accessed only by same package(Extended or non extended) classes. Diff package classes cannot access
+
+4. Private:
+---------------
+When an attribute(variable/method/constructor) is declared as private, then it can be accessed only within the declared class
+
+
+******************************************* PLEASE SEE THE DIG *******************************************************
+
+
+package package1;
+
+public class C1 {
+	
+	
+	private int a = 100;
+	int b = 200;
+	protected int c = 300;
+	public int d = 400;
+	
+	
+	private void m1() {
+		System.out.println("m1-method");
+	}
+	
+	void m2() {
+		System.out.println("m2-method");
+	}
+	
+	protected void m3() {
+		System.out.println("m3-method");
+	}
+	
+	public void m4() {
+		System.out.println("m4-method");
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		C1 cc = new C1();
+		
+		System.out.println(cc.a);
+		System.out.println(cc.b);
+		System.out.println(cc.c);
+		System.out.println(cc.d);
+		
+		cc.m1();
+		cc.m2();
+		cc.m3();
+		cc.m4();
+		
+		
+	}
+}
+
+
+package package1;
+
+
+public class C2 extends C1 {
+
+public static void main(String[] args) {
+	
+	C2 cc = new C2();
+	
+	// System.out.println(cc.a);  ==> Cannot access as its private
+	System.out.println(cc.b);
+	System.out.println(cc.c);
+	System.out.println(cc.d);
+	
+	// cc.m1();	==> Cannot access as its private
+	cc.m2();
+	cc.m3();
+	cc.m4();
+	
+		
+	}
+		
+	}
+
+
+
+package package1;
+
+public class C3 {
+
+	public static void main(String[] args) {
+		
+		C1 cc = new C1();
+		
+		// System.out.println(cc.a);  ==> Cannot access as its private
+		System.out.println(cc.b);
+		System.out.println(cc.c);
+		System.out.println(cc.d);
+		
+		// cc.m1(); ==> Cannot access as its private
+		cc.m2();
+		cc.m3();
+		cc.m4();
+
+	}
+
+}
+
+
+package package2;
+
+import package1.C1;
+
+public class C22 extends C1{
+	
+
+public static void main(String[] args) {
+	
+	C22 cc = new C22();
+	
+	// System.out.println(cc.a);  ==> Cannot access as its private
+	// System.out.println(cc.b);  ===> Its default and not access in diff package
+	System.out.println(cc.c);
+	System.out.println(cc.d);
+	
+	// cc.m1();	==> Cannot access as its private
+	// cc.m2(); ===> Its default and not access in diff package
+	cc.m3();
+	cc.m4();
+		
+	}
+		
+	}
+
+
+package package2;
+
+import package1.C1;
+
+public class C23 {
+
+	public static void main(String[] args) {
+		
+		C1 cc = new C1();
+		
+		// System.out.println(cc.a);  ==> Cannot access as its private
+		// System.out.println(cc.b);  ===> Its default and not access in diff package
+		// System.out.println(cc.c);  ===> Its protected and not access in diff non extended package
+		System.out.println(cc.d);
+		
+		// cc.m1(); ==> Cannot access as its private
+		// cc.m2(); ==> Its default and not access in diff package
+		// cc.m3();===> Its protected and not access in diff non extended package
+		cc.m4();
+
+	}
+
+}
+
+
+

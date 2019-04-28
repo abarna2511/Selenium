@@ -1,0 +1,155 @@
+KEYWORDS:
+---------------
+
+1. Final:
+------------
+1. final can be applied for classes, methods, instance variables, local variables
+2. A class marked as final cannot be extended
+3. A method marked as final cannot be overridden
+4. A variable marked as final cannot change its value
+
+2. this:
+---------
+this keyword is to identify the diff bw the instance variable and the local variable
+
+Eg:
+
+package keywords;
+
+public class ThisKeyword {
+	
+	public static void main(String[] args) {
+		A obj = new A(10);
+		obj.show();
+	}
+}
+
+class A{
+	
+	private int x;
+	
+	public A(int x) {
+		x=x;			
+	}
+	
+	public void show() {
+		System.out.println("x value is "+x);
+	}
+}
+
+Output:
+x value is 0
+
+To overcome above issue need to use this keyword
+
+package keywords;
+
+public class ThisKeyword {
+	
+	public static void main(String[] args) {
+		A obj = new A(10);
+		obj.show();
+	}
+}
+
+class A{
+	
+	private int x;
+	
+	public A(int x) {
+		this.x=x;			
+	}
+	
+	public void show() {
+		System.out.println("x value is "+x);
+	}
+}
+
+Output:
+x value is 10
+
+
+3.SUPER Keyword:		It is used to represent the parent attributes in the sub classes
+------------------	
+Eg:
+
+package keywords;
+
+public class SuperKeywordDemo {
+
+	public static void main(String[] args) {
+
+		B obj = new B(10);
+	}
+}
+
+class A1{	//Super class
+	
+	public A1() {
+		System.out.println("In Const A");
+	}
+	
+	public A1(int a) {
+		System.out.println("In Const A Param");
+	}
+}
+
+class B extends A1{	//Sub class
+	
+	public B() {
+		System.out.println("In Const B");
+	}
+	
+	public B(int b) {
+		System.out.println("In Const B Param");
+	}
+	 
+}
+
+Output:
+In Const A
+In Const B Param
+
+To print In Const A Param use super keyword
+
+Eg:
+------
+
+package keywords;
+
+public class SuperKeywordDemo {
+
+	public static void main(String[] args) {
+
+		B obj = new B(10);
+	}
+}
+
+class A1{	//Super class
+	
+	public A1() {
+		System.out.println("In Const A");
+	}
+	
+	public A1(int a) {
+		System.out.println("In Const A Param");
+	}
+}
+
+class B extends A1{	//Sub class
+	
+	public B() {
+		System.out.println("In Const B");
+	}
+	
+	public B(int b) {
+		super(b);
+		System.out.println("In Const B Param");
+	}
+	 
+}
+
+Output:
+In Const A Param
+In Const B Param
+

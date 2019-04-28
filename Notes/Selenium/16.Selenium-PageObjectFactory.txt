@@ -1,0 +1,78 @@
+Page Object Factory:
+---------------------
+It is same like Page Object Pattern.
+Whereas instead of By we will use @FindBy annotations to declare the objects
+And also we need to initialize the created objects from the constructor
+
+Steps:
+--------
+1. Create a new java project
+2. Create 2 packages --- ObjectRepository and Testcases
+3. In ObjectRepository create seperate class for login Page objects, Home Page objects etc
+
+package objectrepositoryfactory;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class LoginPageFactory {
+	
+	WebDriver driver;
+	
+	public LoginPageFactory(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	@FindBy(name = "username")
+	WebElement username;
+	
+	@FindBy(name = "password")
+	WebElement password;
+	
+	@FindBy(xpath = "//input[@value='Login']")
+	WebElement loginButton;
+	
+	
+	public WebElement enterUserName() {
+		return username;
+	}
+	
+	public WebElement enterPassword() {
+		return password;
+	}
+	
+	public WebElement clickLoginButton() {
+		return loginButton;
+	}
+	
+}
+
+
+
+4. Create a LoginTest and use the objectrepository 
+
+package testcases;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+import objectrepositoryfactory.LoginPageFactory;
+
+public class LoginTestFactory {
+	WebDriver driver;
+	@Test
+	public void login() {
+		System.setProperty(	"webdriver.chrome.driver", "G:\\Softwares-exe\\Studies\\Selenium\\drivers\\chromedriver_win32\\chromedriver.exe");
+		driver =new ChromeDriver();
+		driver.get("https://classic.crmpro.com/login.cfm");
+		LoginPageFactory login = new LoginPageFactory(driver);
+		login.enterUserName().sendKeys("vignesh1810");
+		login.enterPassword().sendKeys("vignesh1810");
+		login.clickLoginButton().click();
+	}
+
+}
+

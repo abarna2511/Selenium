@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test  name="Test">
+  <parameter name="url" value="http://facebook.com"/>
+    <parameter name="browser" value="chrome"/>
+    <parameter name="emailId" value="test123@gmail.com"/>
+    <parameter name="password" value="testpassword"/>
+    <classes>
+      <class name="testng.ParemetersDemo"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

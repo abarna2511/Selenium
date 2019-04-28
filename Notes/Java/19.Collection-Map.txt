@@ -1,0 +1,151 @@
+MAPS:		Map will always store as key and pair format
+--------
+
+Examples for map:
+1. Error codes (200,"fatalError")
+2. Map of zip codes ===> (600091, "Madipakkam")
+
+Methods available:
+-------------------
+1. put() --> To insert data(Key + Value) in map
+2. putAll() --> Copies all of the mappings from the specified map to this map. 
+3. get(key)
+4. containsKey(key)---> Will return true or false
+5. remove(key)
+6. keySet() --> Returns the set view containing all the keys
+7. entrySet() --> Returns the set view containing all the key and value
+
+Types:
+-----------
+1. Hash Map
+2. Hash Table
+
+5.HASH MAP:		HashMap is a class implements map interface. It contains only unique elements. It maintains no order as it is stored by key and pair value
+-----------------
+
+Eg:
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+public class HashMapDemo {
+
+	public static void main(String[] args) {
+		//To insert value
+		HashMap<Integer, String>hm = new HashMap<Integer, String>();
+		hm.put(1, "Selenium");
+		hm.put(2, "QTP");
+		hm.put(3, "TestComplete");
+		
+		HashMap<Integer, String>hm2 = new HashMap<Integer, String>();
+		hm2.put(1, "A");
+		hm2.put(2, "B");
+		hm2.put(3, "C");
+		
+		//Get value from specific key
+		System.out.println(hm.get(1));	// Output is Selenium
+		System.out.println(hm2.get(1));	// Output is A
+		System.out.println(hm.get(6));	// Output is null as there is no key present as 6 in hm
+		
+		//To see hm data in syso
+		System.out.println("Values of hm "+hm);
+		
+		//Used to replace hm with hm2 datas
+		hm.putAll(hm2);
+		
+		System.out.println("Values of hm After Put All "+hm);
+		
+		//To print all the keys present in HashMap
+		System.out.println(hm.keySet());
+		
+		//To print all the Values present in HashMap
+		System.out.println(hm.values());
+		
+		//To print all values
+		for(Entry m : hm.entrySet()) {
+		System.out.println(m.getKey()+" "+m.getValue());
+		}
+		
+		//to remove a specified Key and Value pair
+		System.out.println("Before remove "+hm);
+		hm.remove(3);
+		System.out.println("After remove "+hm);
+		
+		//To check Key is present in HashMap or not
+		if(hm.containsKey(2)) {
+			System.out.println("hm has a key as 2");
+		}
+	}
+}		
+
+6. HASH TABLE :  	It is similar to HashMap but Hash Table is synchronized. It maintains no order as it is stored by key and pair value.
+-----------------
+1. It stores Key as object. Each object will have a unique hash code. Each Hash code will have a value associated
+2. No Null key and null value
+3. Iterate all the values in the Hash table is called ENUMERATION
+
+Eg:
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Set;
+
+public class HashMapDemo {
+
+	public static void main(String[] args) {
+		Hashtable h1 = new Hashtable();
+		h1.put(1, "Tom");
+		h1.put(2, "Test");
+		h1.put(3, "Java");
+		
+		//create a clone copy or shallow copy
+		Hashtable h2 = new Hashtable();
+		h2 = (Hashtable)h1.clone();
+		
+		System.out.println("The values from h1 "+h1);
+		System.out.println("The values from h2 "+h2);
+		
+		//To Delete all the data in h1
+		h1.clear();
+		
+		System.out.println("The values from h1 "+h1);
+		System.out.println("The values from h2 "+h2);
+		
+		//contains
+		Hashtable st = new Hashtable();
+		st.put("A", "Vignesh");
+		st.put("B", "QA");
+		st.put("C", "Selenium");
+		
+		if(st.contains("Vignesh")) {
+			System.out.println("value is found");
+		}
+		
+		//print all values ---> Enumeration
+		Enumeration e = st.elements();
+		System.out.println("Values from st using Enumeration:");
+		while(e.hasMoreElements()) {
+			System.out.println(e.nextElement());
+		}
+		
+		//print all values ---> entrySet() -- set of hashtable values
+		System.out.println("Values from st using EntrySet:");
+		Set s = st.entrySet();
+		System.out.println(s);
+		
+		//Check both the hashtables are equal or not
+		Hashtable st1 = new Hashtable();
+		st1.put("A", "Vignesh");
+		st1.put("B", "QA");
+		st1.put("C", "Selenium");
+		
+		if(st.equals(st1)) {
+			System.out.println("Both are equal");
+		}
+		
+		//get values from a key
+		System.out.println(st1.get("A"));
+		
+		//get the hashcode of the hash table object
+		System.out.println("Hash Code of st is "+st.hashCode());
+		System.out.println("Hash Code of st1 is "+st1.hashCode());
+	}
+	}

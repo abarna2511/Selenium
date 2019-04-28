@@ -1,0 +1,176 @@
+Object:
+-----------
+An object is a container which contains value of both homogeneous and heterogeneous type
+Object are stored in memeory using unique id called hash code
+
+
+CLASS:
+----------
+Class is a group of objects which have common properties
+
+Source file will allow only 1 PUBLIC CLASS and n number of non public class
+
+Class contains totally 5 elements
+		1. Variables
+		2. Methods
+		3. Constructors
+		4. Instance Blocks
+		5. Static Blocks
+	
+		
+DATA TYPES:
+------------
+
+1. Represents type of the variable
+2. Decides the variable size Eg - For int - 4 byte, float - 4 byte, char - 2 byte
+
+Primitive data types :
+
+Data-types		Size			Default value
+1. byte			1 byte(8-bits)		0
+2. short		2					0
+3. int			4					0
+4. long			8					0
+5. float		4					0.0
+6. double		8					0.0
+7. char			2					Single space
+8. boolean		No Size				False
+
+- Decimal values are default by "Double" values. And not float values
+- Need to use "f" constant to assign a decimal value as float type
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		double d=10.5;
+		System.out.println(d);
+		
+		float f=20.5f;
+		System.out.println(f);
+	}
+}
+
+
+VARIABLES : variable type it may be - primitive, class, enum, array
+-------------
+
+primitive : 
+int a=10;
+float b=10.5;
+
+Class type :
+Test t; // Where Test is a class
+Emp e; // Where Emp is a class
+
+enum : Enums are used when we know all possible values at compile time, such as choices on a menu, rounding modes, command line flags, etc. 
+It is not necessary that the set of constants in an enum type stay fixed for all time.
+Enum declaration can be done outside a Class or inside a Class but not inside a Method.
+
+Array : 
+int[] a;
+String[] str;
+
+There are 3 types of variables
+				1. Local variables
+				2. Instance variables
+				3. Static variables
+
+1. Local variables : 
+-------------------------------
+- When variables are declared inside the main method or constructors or blocks(instance,static) it is called local variables
+- The scope of the variable lies within the method or constructors or blocks. 
+	For eg there are 2 user defined methods as m1() and m2() and if variable "a" is declared in m1(), it cannot be used by m2()
+
+	
+2. Instance variables :
+-------------------------------
+- When variables are declared inside the class but outside of the method then it is called instance variables
+- The scope of the variable lies inside the class i.e all the methods, constructors and blocks inside the class can access the instance variables
+- In Instance area, Instance variable can be accessed directly
+  In Static area, Instance variable can be accessed by object reference variable
+  
+  
+3. Static variables :
+-------------------------------
+- When variables are declared inside the class but outside of the method with static modifier then it is called static variables
+- The scope of the variable lies inside the class i.e all the methods, constructors and blocks inside the class can access the static variables
+- Both in Instance & Static area, static variable can be accessed by using Class name ---> This is the recommended approach
+- Static variables can be also be accessed directly & access using object ---> Not much preferable as accessing via class name
+
+class Test
+{
+	int a=100;	// Instance variable
+	int b=200;
+	static int d=300;  // Static variable
+	static int e=400;
+	public static void main(String[] args) // always main method is a static method
+	{
+		int c=10; // Local variable 
+		Test t = new Test(); // created object as to access instance variable "a" inside static area
+		System.out.println(t.a);	
+		System.out.println(t.b);
+		t.m1(); // bcz JVM is responsible to execute only main method. All the user defined methods such as m1() need to be called in main method. Or else it wont be executed
+		System.out.println(Test.d);
+	}
+	
+	void m1() // instance area as this method is declared without static
+	{
+		System.out.println(a);
+		System.out.println(b);
+		System.out.println(Test.e);
+	}
+}
+
+
+Var VS Default Variables :
+-------------------------------
+
+byte = 0
+short = 0
+int = 0
+long = 0
+float = 0.0
+double = 0.0
+char = single space
+boolean = FALSE
+
+- Default variables will be printed with above default values only when default variables are delcared as instance or static variables
+- When Default variables are declared as local variables it will throw error as "variable might not have been initialized" before using those variables in the method
+
+
+Class VS Object :
+-------------------------------
+1. Class is a logical entity contains logic. Where object is a physical entity contains memory
+2. Class is a blue print which decides object creation. Without class there is no object
+3. In Single class, multiple objects can be created. Where each object occupies memory
+
+
+Instance VS Static :
+-------------------------------
+
+class Test
+{
+	int a=100; 
+	static int b=200;
+	
+	public static void main(String[] args) // always main method is a static method
+	{
+		Test t = new Test();
+		System.out.println(t.a); // Output print is 100
+		System.out.println(t.b); ---> Not preferable but still using as for example // Output print is 200
+		t.a=999;
+		t.b=888;
+		System.out.println(t.a); // Output print is 999
+		System.out.println(t.b); // Output print is 888
+		Test t1 = new Test(); // Creating one more object
+		System.out.println(t1.a); // Output print is 100
+		System.out.println(t1.b); // Output print is 888
+	}
+}
+
+- For instance variable, for every object creation, seperate memory is created
+- For static variable, irrespective of object creation, for one class only sinlge memory is created
+
+
+ 
