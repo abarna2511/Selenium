@@ -1,0 +1,83 @@
+MANUAL TESTING:
+
+Software Lifecycle Models
+• Waterfall model
+• V model
+• Incremental model
+• RAD model
+• Agile model
+• Iterative model
+• Spiral model
+
+Introduction to Testing
+• Why Testing
+• STLC – Software Testing Life Cycle
+• Verification and Validation
+• Desktop, Web and Mobile Applications Testing
+
+Test Strategy & Test Planning with a Live Project
+• Working on Test Strategy
+• Preparing Test Plan document
+• Clarification Document
+• Getting Familiar with Test Design
+
+Preparing a Test Case Document
+• Boundary Value Analysis (BVA)
+• Equivalence Partitioning (EP)
+• Decision Table Testing
+• State Transition Diagrams
+• Use Case Testing
+• Statement Coverage
+• Branch Coverage
+• Path Coverage
+• LCSAJ Testing
+
+Executing Test Cases
+
+Test Reporting
+
+Defects Tracking Mechanism and Life Cycle
+
+Defect Categorization
+• Guidelines On Deciding The Security Of A Defect
+• Guidelines On Deciding The Priority Of Bug
+
+Cost of Quality
+
+Defect Management with Tools like Bugzilla
+
+Software Testing Techniques
+• Static Testing
+• Dynamic Testing
+• White Box Testing/ Structure Testing
+• Black Box Testing
+
+Types Of Testing - Functional Testing:
+• Unit Testing
+• Integration Testing
+• Smoke Testing
+• System Testing
+• Regression Testing
+• User Acceptance Testing
+• Globalization Testing
+• Localization Testing
+
+Types Of Testing - Non Functional Testing:
+• Performance Testing
+• Compatibility Testing
+• Data Migration Testing
+• Data Conversion Testing
+• Security/Penetration Testing
+• Usability Testing
+• Install/Un-Install Testing
+
+Starting with Automation Testing:
+• Why Test Automation
+• Automation Feasibility Analysis
+• Planning And Design
+• Test Environment Setup
+• Automation Script Generation
+• Test Execution
+• Defect Analysis & Fixing
+• Cost Involved In Automation
+• Automation Applied To Different Types Of Testing
